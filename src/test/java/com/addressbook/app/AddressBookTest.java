@@ -69,6 +69,19 @@ public class AddressBookTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(null));
             }
+
+            @Test
+            @DisplayName("Can add a contact when there is already a contact in the list")
+            void canAddContactsWhenThereAreAlreadyContacts() {
+                // Arrange
+                testAddressBook.addContact(testContact);
+                int expected = testAddressBook.getContactList().size() + 1;
+                // Act
+                Contact testContact1 = mock(Contact.class);
+                testAddressBook.addContact(testContact1);
+                // Assert
+                assertEquals(testAddressBook.getContactList().size(), expected);
+            }
         }
 
     }
