@@ -11,6 +11,7 @@ public class AddressBook {
     }
 
     public void addContact(Contact newContact) {
+        if (newContact == null) throw new IllegalArgumentException("Null value is not valid");
         this.contactList.add(newContact);
     }
 }

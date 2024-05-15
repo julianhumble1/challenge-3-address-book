@@ -1,7 +1,8 @@
 package com.addressbook.app;
 
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class AddressBookTest {
@@ -23,16 +24,52 @@ public class AddressBookTest {
             testAddressBook = null;
         }
 
-        @Test
-        @DisplayName("Using addContact increases length of contactList by 1")
-        void testContactListIncreasesBy1() {
-            // Arrange
-            int expected = testAddressBook.getContactList().size() + 1;
-            Contact testContact = mock(Contact.class);
-            // Act
-            testAddressBook.addContact(testContact);
-            // Assert
-            assertEquals(testAddressBook.getContactList().size(), expected);
+        @Nested
+        @DisplayName("US-1: I want to be able to add contacts")
+        class US1AddressBookTests{
+
+            Contact testContact;
+
+            @BeforeEach
+            public void setUp() {
+                 testContact = mock(Contact.class);
+            }
+
+            @AfterEach
+            public void tearDown() {
+                testContact = null;
+            }
+
+            @Test
+            @DisplayName("Using addContact increases length of contactList by 1")
+            void testContactListIncreasesBy1() {
+                // Arrange
+                int expected = testAddressBook.getContactList().size() + 1;
+                // Act
+                testAddressBook.addContact(testContact);
+                // Assert
+                assertEquals(testAddressBook.getContactList().size(), expected);
+            }
+
+            @Test
+            @DisplayName("Resulting Contact includes the added contact")
+            void resultingContactListContainsAddedContact() {
+                // Arrange
+                // Act
+                testAddressBook.addContact(testContact);
+                // Assert
+                assertTrue(testAddressBook.getContactList().contains(testContact));
+            }
+
+            @Test
+            @DisplayName("Throws IllegalArgumentException when Null is added")
+            void throwsIllegalArgumentExceptionForNull() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(null));
+            }
         }
+
     }
 }
