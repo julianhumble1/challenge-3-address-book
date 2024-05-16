@@ -96,7 +96,7 @@ public class ContactTest {
             }
 
             @Test
-            @DisplayName("Test that passing a string with alphabetical characters throw IllegalArgumentException")
+            @DisplayName("Test that passing a string with alphabetical characters throws IllegalArgumentException")
             void alphabeticStringThrowsIllegalArgumentException() {
                 // Arrange
                 testPhone = "testtesttes";
@@ -106,7 +106,7 @@ public class ContactTest {
             }
 
             @Test
-            @DisplayName("Test that passing a string with punctuation characters throw IllegalArgumentException")
+            @DisplayName("Test that passing a string with punctuation characters throws IllegalArgumentException")
             void punctuationStringThrowsIllegalArgumentException() {
                 // Arrange
                 testPhone = "!£$%^&*()[]";
@@ -116,7 +116,7 @@ public class ContactTest {
             }
 
             @Test
-            @DisplayName("Test that passing a string with not exactly 11 non-whitespace characters throw IllegalArgumentException")
+            @DisplayName("Test that passing a string with not exactly 11 non-whitespace characters throws IllegalArgumentException")
             void notExactlyElevenNonWhitespaceCharsStringThrowsIllegalArgumentException() {
                 // Arrange
                 testPhone = "0712345678";
@@ -133,6 +133,16 @@ public class ContactTest {
                 // Act
                 // Assert
                 assertDoesNotThrow(() -> new Contact(testName, testPhone));
+            }
+
+            @Test
+            @DisplayName("Test that passing a string not starting 07 throws IllegalArgumentException")
+            void notStartingWith07ThrowsIllegalArgumentException() {
+                // Arrange
+                testPhone = "12345678901";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
             }
 
         }
