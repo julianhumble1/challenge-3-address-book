@@ -68,6 +68,26 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validatePhone(testPhone));
             }
 
+            @Test
+            @DisplayName("Test that a string with alphabetic characters in validatePhone() returns false")
+            void stringWithAlphabetCharactersInValidatePhoneReturnsFalse() {
+                // Arrange
+                testPhone = "testtesttes";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validatePhone(testPhone));
+            }
+
+            @Test
+            @DisplayName("Test that a string with punctuation characters in validatePhone() returns false")
+            void stringWithPunctuationCharactersInValidatePhoneReturnsFalse() {
+                // Arrange
+                testPhone = "!£$%^&*()[]";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validatePhone(testPhone));
+            }
+
         }
 
 

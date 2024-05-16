@@ -2,11 +2,35 @@ package com.addressbook.app.utils;
 
 public class DetailsValidator {
 
+    // Purpose Validators
+
     public static boolean validateName(String name) {
-        return (name != null && !name.trim().isEmpty());
+        return (checkStringNotNull(name) && checkStringNotEmpty(name));
     }
 
     public static boolean validatePhone(String phone) {
-        return !phone.isEmpty();
+        return (checkStringNotEmpty(phone)
+                && checkStringContainsNoAlphabeticalChars(phone)
+                && checkStringContainsNoPunctuationChars(phone)
+        );
     }
+
+    // String Property Checkers
+
+    private static boolean checkStringNotEmpty(String string) {
+        return !string.trim().isEmpty();
+    }
+
+    private static boolean checkStringNotNull(String string) {
+        return !(string == null);
+    }
+
+    private static boolean checkStringContainsNoAlphabeticalChars(String string) {
+        return !string.matches(".*[a-zA-Z]+.*");
+    }
+
+    private static boolean checkStringContainsNoPunctuationChars(String string) {
+        return !string.matches(".*[!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+.*");
+    }
+
 }
