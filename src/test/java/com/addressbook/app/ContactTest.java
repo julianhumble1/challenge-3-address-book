@@ -11,8 +11,6 @@ public class ContactTest {
     @DisplayName("Contact Tests")
     class ContactTests{
 
-        private Contact testContact;
-
         @Nested
         @DisplayName("US-2: I want my contact to have a name record")
         class US2ContactTests{
