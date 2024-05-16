@@ -3,8 +3,7 @@ package com.addressbook.app;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
 
@@ -111,6 +110,16 @@ public class ContactTest {
             void punctuationStringThrowsIllegalArgumentException() {
                 // Arrange
                 testPhone = "!£$%^&*()[]";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+            }
+
+            @Test
+            @DisplayName("Test that passing a string with not exactly 11 non-whitespace characters throw IllegalArgumentException")
+            void notExactlyElevenNonWhitespaceCharsStringThrowsIllegalArgumentException() {
+                // Arrange
+                testPhone = "0712345678";
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
