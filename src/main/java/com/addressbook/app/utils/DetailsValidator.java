@@ -9,9 +9,11 @@ public class DetailsValidator {
     }
 
     public static boolean validatePhone(String phone) {
-        return (checkStringNotEmpty(phone)
+        return (
+                checkStringNotEmpty(phone)
                 && checkStringContainsNoAlphabeticalChars(phone)
                 && checkStringContainsNoPunctuationChars(phone)
+                && checkStringContainsElevenNonWhiteSpaceCharacters(phone)
         );
     }
 
@@ -31,6 +33,11 @@ public class DetailsValidator {
 
     private static boolean checkStringContainsNoPunctuationChars(String string) {
         return !string.matches(".*[!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+.*");
+    }
+
+    private static boolean checkStringContainsElevenNonWhiteSpaceCharacters(String string) {
+        String strippedOfWhitespace = string.replaceAll("\\s", "");
+        return strippedOfWhitespace.length() == 11;
     }
 
 }

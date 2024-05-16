@@ -88,6 +88,16 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validatePhone(testPhone));
             }
 
+            @Test
+            @DisplayName("Test that a string not exactly 11 non-whitespace characters in validatePhone() returns false")
+            void stringNotExactlyElevenNonWhitespaceCharactersInValidatePhoneReturnsFalse() {
+                // Arrange
+                testPhone = "0712345678";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validatePhone(testPhone));
+            }
+
         }
 
 
