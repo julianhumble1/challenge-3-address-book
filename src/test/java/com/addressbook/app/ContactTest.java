@@ -46,6 +46,16 @@ public class ContactTest {
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName));
             }
 
+            @Test
+            @DisplayName("Test that passing an empty string as the name throws IllegalArgumentException")
+            void nullStringThrowsIllegalArgumentException() {
+                // Arrange
+                testName = null;
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName));
+            }
+
         }
     }
 }
