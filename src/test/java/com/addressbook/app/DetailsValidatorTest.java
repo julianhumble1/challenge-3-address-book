@@ -1,6 +1,7 @@
 package com.addressbook.app;
 
 import com.addressbook.app.utils.DetailsValidator;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,28 @@ public class DetailsValidatorTest {
             }
         }
 
+        @Nested
+        @DisplayName("US-3: I want my contact to have a name")
+        class US3DetailsValidatorTests{
+
+            String testPhone;
+
+            @AfterEach
+            void tearDown() {
+                testPhone = null;
+            }
+
+            @Test
+            @DisplayName("Test that an empty string in validatePhone() returns false")
+            void emptyStringInValidatePhoneReturnsFalse() {
+                // Arrange
+                testPhone = "";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validatePhone(testPhone));
+            }
+
+        }
 
 
     }
