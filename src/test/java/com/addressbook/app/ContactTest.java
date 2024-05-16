@@ -4,12 +4,22 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ContactTest {
 
     @Nested
     @DisplayName("Contact Tests")
     class ContactTests{
+
+        private Contact testContact;
+        private String testName;
+
+        @AfterEach
+        void tearDown() {
+            testContact = null;
+            testName = null;
+        }
 
         @Nested
         @DisplayName("US-2: I want my contact to have a name record")
@@ -19,11 +29,21 @@ public class ContactTest {
             @DisplayName("Test that passing a name into the Contact constructor results in the same name being assigned")
             void testCorrectNameIsAssigned() {
                 // Arrange
-                String testName = "test2";
+                testName = "test";
                 // Act
-                Contact testContact = new Contact(testName);
+                testContact = new Contact(testName);
                 // Assert
                 assertEquals(testContact.getName(), testName);
+            }
+
+            @Test
+            @DisplayName("Test that passing an empty string as the name throws IllegalArgumentException")
+            void emptyStringThrowsIllegalArgumentException() {
+                // Arrange
+                testName = "";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName));
             }
 
         }

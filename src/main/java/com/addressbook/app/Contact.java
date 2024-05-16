@@ -1,5 +1,7 @@
 package com.addressbook.app;
 
+import com.addressbook.app.utils.DetailsValidator;
+
 public class Contact {
 
     private String name;
@@ -9,6 +11,11 @@ public class Contact {
     }
 
     public Contact(String name) {
-        this.name = name;
+        if (DetailsValidator.validateName(name)) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Name entered can't be empty or null");
+        }
+
     }
 }
