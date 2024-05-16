@@ -48,7 +48,7 @@ public class DetailsValidatorTest {
         }
 
         @Nested
-        @DisplayName("US-3: I want my contact to have a name")
+        @DisplayName("US-3: I want my contact to have a phone number")
         class US3DetailsValidatorTests{
 
             String testPhone;
@@ -108,6 +108,15 @@ public class DetailsValidatorTest {
                 assertTrue(DetailsValidator.validatePhone(testPhone));
             }
 
+            @Test
+            @DisplayName("Test that a string whose first two non-whitespace digits aren't 07 returns false")
+            void stringNotStartingWith07ReturnsFalse() {
+                // Arrange
+                testPhone = "12345678901";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validatePhone(testPhone));
+            }
         }
 
 

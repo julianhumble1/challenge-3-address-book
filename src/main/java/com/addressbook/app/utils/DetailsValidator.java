@@ -14,6 +14,7 @@ public class DetailsValidator {
                 && checkStringContainsNoAlphabeticalChars(phone)
                 && checkStringContainsNoPunctuationChars(phone)
                 && checkStringContainsElevenNonWhiteSpaceCharacters(phone)
+                && checkStringBeginsWith07(phone)
         );
     }
 
@@ -38,6 +39,10 @@ public class DetailsValidator {
     private static boolean checkStringContainsElevenNonWhiteSpaceCharacters(String string) {
         String strippedOfWhitespace = string.replaceAll("\\s", "");
         return strippedOfWhitespace.length() == 11;
+    }
+
+    private static boolean checkStringBeginsWith07(String string) {
+        return string.trim().startsWith("07");
     }
 
 }
