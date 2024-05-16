@@ -26,6 +26,14 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateName(""));
             }
 
+            @Test
+            @DisplayName("Test that null in validateName() returns false")
+            void nullStringInValidateNameReturnsFalse() {
+                // Arrange
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateName(null));
+            }
         }
 
     }
