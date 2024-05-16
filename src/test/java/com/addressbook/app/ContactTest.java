@@ -12,19 +12,20 @@ public class ContactTest {
     @DisplayName("Contact Tests")
     class ContactTests{
 
-        private Contact testContact;
-        private String testName;
-        private String testPhone;
-
-        @AfterEach
-        void tearDown() {
-            testContact = null;
-            testName = null;
-        }
-
         @Nested
         @DisplayName("US-2: I want my contact to have a name record")
         class US2ContactTests{
+
+            private Contact testContact;
+            private String testName;
+
+            String testPhone = "07123456789";
+
+            @AfterEach
+            void tearDown() {
+                testContact = null;
+                testName = null;
+            }
 
             @Test
             @DisplayName("Test that passing a name into the Contact constructor results in the same name being assigned")
@@ -63,12 +64,15 @@ public class ContactTest {
         @DisplayName("US-3: I want my contact to have a phone number")
         class US3ContactTests{
 
+            Contact testContact;
             String testPhone;
+
+            String testName = "placeholder";
 
             @BeforeEach
             void setUp() {
-                testName = "placeholder";
                 testPhone = null;
+                testContact = null;
             }
 
             @Test
@@ -87,6 +91,16 @@ public class ContactTest {
             void emptyStringThrowsIllegalArgumentException() {
                 // Arrange
                 testPhone = "";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+            }
+
+            @Test
+            @DisplayName("Test that passing a string with alphabetical characters throw IllegalArgumentException")
+            void alphabeticStringThrowsIllegalArgumentException() {
+                // Arrange
+                testPhone = "testtesttes";
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
