@@ -98,6 +98,16 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validatePhone(testPhone));
             }
 
+            @Test
+            @DisplayName("Test that a string with 11 non-whitespaces digits but also whitespace digits returns true")
+            void stringWithElevenNonWhitespaceAndSomeWhiteSpaceInValidatePhoneReturnsTrue() {
+                // Arrange
+                testPhone = "07 123 456 789";
+                // Act
+                // Assert
+                assertTrue(DetailsValidator.validatePhone(testPhone));
+            }
+
         }
 
 
