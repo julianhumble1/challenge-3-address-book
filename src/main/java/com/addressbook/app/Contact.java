@@ -21,7 +21,12 @@ public class Contact {
         } else {
             throw new IllegalArgumentException("Name entered can't be empty or null");
         }
-        this.phone = phone;
+        if(DetailsValidator.validatePhone(phone)) {
+            this.phone = phone;
+        } else {
+            throw new IllegalArgumentException("Phone number can't be empty and must be in form 07XXX XXXXXX");
+        }
+
     }
 
 

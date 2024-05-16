@@ -63,9 +63,12 @@ public class ContactTest {
         @DisplayName("US-3: I want my contact to have a phone number")
         class US3ContactTests{
 
+            String testPhone;
+
             @BeforeEach
             void setUp() {
                 testName = "placeholder";
+                testPhone = null;
             }
 
             @Test
@@ -77,6 +80,16 @@ public class ContactTest {
                 testContact = new Contact(testName, testPhone);
                 // Assert
                 assertEquals(testPhone, testContact.getPhone());
+            }
+
+            @Test
+            @DisplayName("Test that passing an empty string as the phone throws IllegalArgumentException")
+            void emptyStringThrowsIllegalArgumentException() {
+                // Arrange
+                testPhone = "";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
             }
 
         }
