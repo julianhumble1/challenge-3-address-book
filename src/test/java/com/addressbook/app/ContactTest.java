@@ -106,6 +106,16 @@ public class ContactTest {
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
             }
 
+            @Test
+            @DisplayName("Test that passing a string with punctuation characters throw IllegalArgumentException")
+            void punctuationStringThrowsIllegalArgumentException() {
+                // Arrange
+                testPhone = "!£$%^&*()[]";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+            }
+
         }
     }
 }
