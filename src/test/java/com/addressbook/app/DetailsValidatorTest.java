@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DetailsValidatorTest {
 
@@ -33,6 +34,15 @@ public class DetailsValidatorTest {
                 // Act
                 // Assert
                 assertFalse(DetailsValidator.validateName(null));
+            }
+
+            @Test
+            @DisplayName("Test that a string with characters in it in validateName() returns true")
+            void validNameReturnsTrue() {
+                // Arrange
+                // Act
+                // Assert
+                assertTrue(DetailsValidator.validateName("test"));
             }
         }
 
