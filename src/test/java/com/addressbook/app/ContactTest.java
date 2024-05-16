@@ -125,6 +125,16 @@ public class ContactTest {
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
             }
 
+            @Test
+            @DisplayName("Test that passing a string with exactly 11 non-whitespace characters but also non-whitespace doesn't throw IllegalArgumentException")
+            void exactlyElevenNonWhitespaceCharsAndWhitespaceStringDoesNotThrowIllegalArgumentException() {
+                // Arrange
+                testPhone = "07 123 456 789";
+                // Act
+                // Assert
+                assertDoesNotThrow(() -> new Contact(testName, testPhone));
+            }
+
         }
     }
 }
