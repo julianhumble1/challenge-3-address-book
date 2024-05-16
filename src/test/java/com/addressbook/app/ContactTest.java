@@ -14,6 +14,7 @@ public class ContactTest {
 
         private Contact testContact;
         private String testName;
+        private String testPhone;
 
         @AfterEach
         void tearDown() {
@@ -31,9 +32,9 @@ public class ContactTest {
                 // Arrange
                 testName = "test";
                 // Act
-                testContact = new Contact(testName);
+                testContact = new Contact(testName, testPhone);
                 // Assert
-                assertEquals(testContact.getName(), testName);
+                assertEquals(testName, testContact.getName());
             }
 
             @Test
@@ -43,7 +44,7 @@ public class ContactTest {
                 testName = "";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
             }
 
             @Test
@@ -53,7 +54,29 @@ public class ContactTest {
                 testName = null;
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+            }
+
+        }
+
+        @Nested
+        @DisplayName("US-3: I want my contact to have a phone number")
+        class US3ContactTests{
+
+            @BeforeEach
+            void setUp() {
+                testName = "placeholder";
+            }
+
+            @Test
+            @DisplayName("Test that passing a valid phone into the constructor results in the same number being assigned")
+            void testCorrectPhoneIsAssigned() {
+                // Arrange
+                testPhone = "07123456789";
+                // Act
+                testContact = new Contact(testName, testPhone);
+                // Assert
+                assertEquals(testPhone, testContact.getPhone());
             }
 
         }

@@ -48,7 +48,7 @@ public class AddressBookTest {
                 // Act
                 testAddressBook.addContact(testContact);
                 // Assert
-                assertEquals(testAddressBook.getContactList().size(), expected);
+                assertEquals(expected, testAddressBook.getContactList().size());
             }
 
             @Test
@@ -80,7 +80,7 @@ public class AddressBookTest {
                 Contact testContact1 = mock(Contact.class);
                 testAddressBook.addContact(testContact1);
                 // Assert
-                assertEquals(testAddressBook.getContactList().size(), expected);
+                assertEquals(expected, testAddressBook.getContactList().size());
             }
         }
 
