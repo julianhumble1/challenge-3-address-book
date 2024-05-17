@@ -165,7 +165,15 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateEmail(testEmail));
             }
 
-
+            @Test
+            @DisplayName("Test that a string with a '.' immediately after the @ symbol returns false")
+            void stringDotImmediatelyAfterAtSymbolReturnsFalse() {
+                // Arrange
+                testEmail = "test@.test";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateEmail(testEmail));
+            }
 
         }
     }
