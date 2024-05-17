@@ -145,6 +145,16 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateEmail(testEmail));
             }
 
+            @Test
+            @DisplayName("Test that a string with whitespace anywhere other than the front or end returns false")
+            void stringWithWhitespaceNotAtFrontOrEndReturnsFalse() {
+                // Arrange
+                testEmail = "test @test. test";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateEmail(testEmail));
+            }
+
         }
     }
 }
