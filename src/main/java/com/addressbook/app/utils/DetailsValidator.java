@@ -18,6 +18,10 @@ public class DetailsValidator {
         );
     }
 
+    public static boolean validateEmail(String email) {
+        return email.matches(".*@.*");
+    }
+
     // String Property Checkers
 
     private static boolean checkStringNotEmpty(String string) {

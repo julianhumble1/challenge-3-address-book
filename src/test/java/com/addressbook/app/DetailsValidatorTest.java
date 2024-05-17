@@ -119,6 +119,22 @@ public class DetailsValidatorTest {
             }
         }
 
+        @Nested
+        @DisplayName("US-4: I want my contact to have an email address")
+        class US4DetailsValidatorTests{
 
+            String testEmail;
+
+            @Test
+            @DisplayName("Test that a string without an @ symbol returns false")
+            void stringWithoutAtSymbolReturnsFalse() {
+                // Arrange
+                testEmail = "test.test.com";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateEmail(testEmail));
+            }
+
+        }
     }
 }
