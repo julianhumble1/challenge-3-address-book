@@ -135,6 +135,16 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateEmail(testEmail));
             }
 
+            @Test
+            @DisplayName("Test that a string with no content before the @ symbol returns false")
+            void stringWithNoContentBeforeAtSymbolReturnsFalse() {
+                // Arrange
+                testEmail = "@test.test";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateEmail(testEmail));
+            }
+
         }
     }
 }
