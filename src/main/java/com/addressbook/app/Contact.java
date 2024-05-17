@@ -32,7 +32,11 @@ public class Contact {
             throw new IllegalArgumentException("Phone number can't be empty or contain non-numeric characters" +
                     " and must be in form 07XXX XXXXXX");
         }
-        this.email = email;
+        if (DetailsValidator.validateEmail(email)) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Email address can't be empty and must be in the form XXX@XXX.XXX");
+        }
 
     }
 
