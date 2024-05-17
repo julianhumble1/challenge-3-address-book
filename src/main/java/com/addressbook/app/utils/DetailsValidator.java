@@ -19,7 +19,7 @@ public class DetailsValidator {
     }
 
     public static boolean validateEmail(String email) {
-        return email.matches("\\S*+@+\\S*");
+        return email.matches("\\S+@[.]\\S+");
     }
 
     // String Property Checkers

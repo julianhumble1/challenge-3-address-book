@@ -155,6 +155,18 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateEmail(testEmail));
             }
 
+            @Test
+            @DisplayName("Test that a string without a '.' after the @ symbol returns false")
+            void stringNoDotAfterAtSymbolReturnsFalse() {
+                // Arrange
+                testEmail = "test@test";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.validateEmail(testEmail));
+            }
+
+
+
         }
     }
 }
