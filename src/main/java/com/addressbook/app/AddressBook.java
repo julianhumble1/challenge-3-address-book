@@ -22,7 +22,7 @@ public class AddressBook {
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
-            if (searchTerm == contact.getName()) {
+            if (searchTerm.contains(contact.getName())) {
                 searchResults.add(contact);
             }
         }

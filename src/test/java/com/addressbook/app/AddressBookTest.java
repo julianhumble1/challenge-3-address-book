@@ -30,13 +30,13 @@ public class AddressBookTest {
 
         @Nested
         @DisplayName("US-1: I want to be able to add contacts")
-        class US1AddressBookTests{
+        class US1AddressBookTests {
 
             Contact testContact;
 
             @BeforeEach
             public void setUp() {
-                 testContact = mock(Contact.class);
+                testContact = mock(Contact.class);
             }
 
             @AfterEach
@@ -90,10 +90,10 @@ public class AddressBookTest {
 
         @Nested
         @DisplayName("US-5: I want to be able to search my address book by name and see the results")
-        class US5AddressBookTests{
+        class US5AddressBookTests {
 
-            Contact testContact1 = mock(Contact.class);
-            Contact testContact2 = mock(Contact.class);
+            private Contact testContact1 = mock(Contact.class);
+            private Contact testContact2 = mock(Contact.class);
 
             @AfterEach
             void tearDown() {
@@ -113,9 +113,24 @@ public class AddressBookTest {
                 ArrayList<Contact> actual = testAddressBook.findSearchResults("Test Test");
                 // Assert
                 assertEquals(expected, actual);
-
             }
 
+            @Test
+            @DisplayName("Test that searching a name match to exactly one of multiple contacts in the address," +
+                    " findSearchResults() returns an arrayList of length 1")
+            void matchExactlyOneContactReturnsOnlyThatContact() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test Test");
+                when(testContact2.getName()).thenReturn("Test2 Test2");
+                testAddressBook.addContact(testContact1);
+                testAddressBook.addContact(testContact2);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
+                // Act
+                ArrayList<Contact> actual = testAddressBook.findSearchResults("Test Test");
+                // Assert
+                assertEquals(expected, actual);
+
+            }
         }
     }
 }
