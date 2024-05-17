@@ -19,6 +19,7 @@ public class ContactTest {
             private String testName;
 
             String testPhone = "07123456789";
+            String testEmail = "test@test.test";
 
             @AfterEach
             void tearDown() {
@@ -32,7 +33,7 @@ public class ContactTest {
                 // Arrange
                 testName = "test";
                 // Act
-                testContact = new Contact(testName, testPhone);
+                testContact = new Contact(testName, testPhone, testEmail);
                 // Assert
                 assertEquals(testName, testContact.getName());
             }
@@ -44,7 +45,7 @@ public class ContactTest {
                 testName = "";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -54,7 +55,7 @@ public class ContactTest {
                 testName = null;
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
         }
@@ -67,6 +68,7 @@ public class ContactTest {
             String testPhone;
 
             String testName = "placeholder";
+            String testEmail = "test@test.test";
 
             @BeforeEach
             void setUp() {
@@ -80,7 +82,7 @@ public class ContactTest {
                 // Arrange
                 testPhone = "07123456789";
                 // Act
-                testContact = new Contact(testName, testPhone);
+                testContact = new Contact(testName, testPhone, testEmail);
                 // Assert
                 assertEquals(testPhone, testContact.getPhone());
             }
@@ -92,7 +94,7 @@ public class ContactTest {
                 testPhone = "";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -102,7 +104,7 @@ public class ContactTest {
                 testPhone = "testtesttes";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -112,7 +114,7 @@ public class ContactTest {
                 testPhone = "!£$%^&*()[]";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -122,7 +124,7 @@ public class ContactTest {
                 testPhone = "0712345678";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -132,7 +134,7 @@ public class ContactTest {
                 testPhone = "07 123 456 789";
                 // Act
                 // Assert
-                assertDoesNotThrow(() -> new Contact(testName, testPhone));
+                assertDoesNotThrow(() -> new Contact(testName, testPhone, testEmail));
             }
 
             @Test
@@ -142,9 +144,37 @@ public class ContactTest {
                 testPhone = "12345678901";
                 // Act
                 // Assert
-                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone));
+                assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
 
+        }
+
+        @Nested
+        @DisplayName("US-4: I want my contact to have an email address")
+        class US4ContactTests{
+
+            private String testName = "placeholder";
+            private String testPhone = "07123456789";
+
+            private Contact testContact;
+            private String testEmail;
+
+            @AfterEach
+            void tearDown() {
+                testName = null;
+                testContact = null;
+            }
+
+            @Test
+            @DisplayName("Test that when I pass a valid email address into the contact, the resulting contact has the same")
+            void checkValidEmailIsAssignedCorrectly() {
+                // Arrange
+                testEmail = "test@test.test";
+                // Act
+                testContact = new Contact(testName, testPhone, testEmail);
+                // Assert
+                assertEquals(testEmail, testContact.getEmail());
+            }
         }
     }
 }

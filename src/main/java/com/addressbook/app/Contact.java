@@ -6,6 +6,7 @@ public class Contact {
 
     private String name;
     private String phone;
+    private String email;
 
     public String getName() {
         return name;
@@ -15,7 +16,11 @@ public class Contact {
         return phone;
     }
 
-    public Contact(String name, String phone) {
+    public String getEmail() {
+        return email;
+    }
+
+    public Contact(String name, String phone, String email) {
         if (DetailsValidator.validateName(name)) {
             this.name = name;
         } else {
@@ -27,6 +32,7 @@ public class Contact {
             throw new IllegalArgumentException("Phone number can't be empty or contain non-numeric characters" +
                     " and must be in form 07XXX XXXXXX");
         }
+        this.email = email;
 
     }
 
