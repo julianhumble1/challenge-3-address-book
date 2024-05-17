@@ -24,7 +24,7 @@ public class ResultsPrinterTest {
         class US5ResultsPrinterTests{
 
             @Test
-            @DisplayName("")
+            @DisplayName("Test that displayContactsToUser() returns the desired string")
             void testDisplayContactsToUserReturnsDesiredString() {
                 // Arrange
                 Contact testContact1 = mock(Contact.class), testContact2 = mock(Contact.class);
@@ -44,8 +44,6 @@ public class ResultsPrinterTest {
                 // Assert
                 assertEquals(expectedString, returnedString);
             }
-
-
 
         }
     }

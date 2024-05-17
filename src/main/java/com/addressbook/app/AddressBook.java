@@ -1,6 +1,7 @@
 package com.addressbook.app;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AddressBook {
 
@@ -18,6 +19,14 @@ public class AddressBook {
         };
     }
 
-
+    public ArrayList<Contact> findSearchResults(String searchTerm) {
+        ArrayList<Contact> searchResults = new ArrayList<>();
+        for (Contact contact: contactList) {
+            if (searchTerm == contact.getName()) {
+                searchResults.add(contact);
+            }
+        }
+        return searchResults;
+    }
 
 }
