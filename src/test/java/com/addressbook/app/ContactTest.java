@@ -186,5 +186,25 @@ public class ContactTest {
                 assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhone, testEmail));
             }
         }
+
+        @Nested
+        @DisplayName("US-5: I want to be able to search my address book by name and see the results")
+        class US5ContactTests{
+
+            @Test
+            @DisplayName("Test that displayContact returns the desired string")
+            void testDisplayContactReturnsDesiredString() {
+                // Arrange
+                String testName = "Test Test";
+                String testPhone = "07123456789";
+                String testEmail = "test@test.test";
+                Contact testContact = new Contact(testName, testPhone, testEmail);
+                String expected = "Name: Test Test\nPhone: 07123456789\nEmail: test@test.test";
+                // Act
+                String returnedString = testContact.displayContact();
+                // Assert
+                assertEquals(expected, returnedString);
+            }
+        }
     }
 }

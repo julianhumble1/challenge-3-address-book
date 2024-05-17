@@ -37,7 +37,10 @@ public class Contact {
         } else {
             throw new IllegalArgumentException("Email address can't be empty and must be in the form XXX@XXX.XXX");
         }
+    }
 
+    public String displayContact() {
+        return "Name: " + this.name + "\nPhone: " + this.phone + "\nEmail: " + this.email;
     }
 
 
