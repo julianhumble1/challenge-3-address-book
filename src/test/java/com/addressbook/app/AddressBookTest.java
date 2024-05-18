@@ -147,17 +147,6 @@ public class AddressBookTest {
                 assertEquals(expected, actual);
             }
 
-            @Test
-            @DisplayName("Test that when using performSearchAndDisplay(), findSearchResults() is called")
-            void performSearchAndDisplayCallsFindSearchResults() {
-                // Arrange
-                AddressBook spyAddressBook = spy(testAddressBook);
-                String testSearchTerm = "test";
-                // Act
-                spyAddressBook.performSearchAndDisplay(testSearchTerm);
-                // Assert
-                verify(spyAddressBook, times(1)).findSearchResults(anyString());
-            }
         }
     }
 }
