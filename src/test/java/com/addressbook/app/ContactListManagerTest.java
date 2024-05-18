@@ -186,6 +186,20 @@ public class ContactListManagerTest {
                 // Assert
                 assertFalse(testContactListManager.getContactList().contains(testContact));
             }
+
+            @Test
+            @DisplayName("Test that when there are multiple contacts in the list, only one contact is removed")
+            void onlyOneContactRemovedWhenMultipleContactsInTheList() {
+                // Arrange
+                Contact testContact1 = mock(Contact.class);
+                testContactListManager.addContact(testContact);
+                testContactListManager.addContact(testContact1);
+                int expected = testContactListManager.getContactList().size() - 1;
+                // Act
+                testContactListManager.removeContact(testContact1);
+                // Assert
+                assertEquals(expected, testContactListManager.getContactList().size());
+            }
         }
     }
 }
