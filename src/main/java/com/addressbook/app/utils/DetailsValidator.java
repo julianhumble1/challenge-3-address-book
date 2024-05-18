@@ -31,7 +31,7 @@ public abstract class DetailsValidator {
 
     public static boolean checkPhoneNotTaken(String phone, ArrayList<Contact> contactList) {
         for (Contact contact: contactList) {
-            if (contact.getPhone() == phone) return false;
+            if (contact.getPhone().equals(phone)) return false;
         }
         return true;
     }

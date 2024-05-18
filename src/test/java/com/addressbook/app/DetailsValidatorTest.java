@@ -11,6 +11,8 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class DetailsValidatorTest {
 
@@ -186,15 +188,30 @@ public class DetailsValidatorTest {
 
             @Test
             @DisplayName("Test that when a phone number which matches a contact already in the arrayList passed in," +
-                    "returns true")
-            void phoneNumberAlreadyMatchingReturnsTrue() {
+                    "returns false")
+            void phoneNumberAlreadyMatchingReturnsFalse() {
                 // Arrange
-                Contact existingContact = new Contact("Existing Contact", "07123456789", "existing@contact.com");
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
                 ArrayList<Contact> contactArrayList = new ArrayList<>(Arrays.asList(existingContact));
                 String newContactPhone = "07123456789";
                 // Act
                 // Assert
                 assertFalse(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
+            }
+
+            @Test
+            @DisplayName("Test that when a phone number which doesn't match a contact already in the arrayList passed in," +
+                    "returns true")
+            void phoneNumberNotAlreadyMatchingReturnsTrue() {
+                // Arrange
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+                ArrayList<Contact> contactArrayList = new ArrayList<>(Arrays.asList(existingContact));
+                String newContactPhone = "07123456781";
+                // Act
+                // Assert
+                assertTrue(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
             }
         }
     }
