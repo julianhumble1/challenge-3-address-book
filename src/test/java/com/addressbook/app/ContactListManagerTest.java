@@ -243,6 +243,20 @@ public class ContactListManagerTest {
                 verify(spyContact).setPhone(newPhone);
             }
 
+            @Test
+            @DisplayName("Test that when editContactEmail is called, setEmail is called on the contact with the given email")
+            void editContactEmailCallsSetEmailWithCorrectEmail() {
+                // Arrange
+                Contact testContact = new Contact("Test", "07123456789", "test@test.com");
+                Contact spyContact = spy(testContact);
+                testContactListManager.addContact(spyContact);
+                String newEmail = "new@new.new";
+                // Act
+                testContactListManager.editContactEmail(spyContact, newEmail);
+                // Assert
+                verify(spyContact).setEmail(newEmail);
+            }
+
         }
     }
 }
