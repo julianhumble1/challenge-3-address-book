@@ -18,6 +18,15 @@ public class ContactListManager {
         }
     }
 
+    public void removeContact(Contact contactToRemove) {
+        if (contactToRemove == null) {
+            throw new IllegalArgumentException("Null value is not valid");
+        } else {
+            this.contactList.remove(contactToRemove);
+        }
+
+    }
+
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
@@ -27,4 +36,6 @@ public class ContactListManager {
         }
         return searchResults;
     }
+
+
 }

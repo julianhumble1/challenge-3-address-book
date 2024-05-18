@@ -89,8 +89,8 @@ public class ContactListManagerTest {
         }
 
         @Nested
-        @DisplayName("US-5: I want to be able to search my address book by name and see the results")
-        class US5AddressBookTests {
+        @DisplayName("US-5: I want to be able to search my contact list by name and see the results")
+        class US5ContactListManagerTests {
 
             private Contact testContact1 = mock(Contact.class);
             private Contact testContact2 = mock(Contact.class);
@@ -146,6 +146,34 @@ public class ContactListManagerTest {
                 ArrayList<Contact> actual = testContactListManager.findSearchResults("Test");
                 // Assert
                 assertEquals(expected, actual);
+            }
+        }
+
+        @Nested
+        @DisplayName("US-6: I want to be able to remove a contact from the contact list")
+        class US6ContactListManagerTests {
+            Contact testContact;
+
+            @BeforeEach
+            public void setUp() {
+                testContact = mock(Contact.class);
+            }
+
+            @AfterEach
+            public void tearDown() {
+                testContact = null;
+            }
+
+            @Test
+            @DisplayName("Test that when a contact is removed, the contactList length reduces by 1")
+            void removeContactReducesContactListLengthByOne() {
+                // Arrange
+                testContactListManager.addContact(testContact);
+                int expected = testContactListManager.getContactList().size() - 1;
+                // Act
+                testContactListManager.removeContact(testContact);
+                // Assert
+                assertEquals(expected, testContactListManager.getContactList().size());
             }
         }
     }
