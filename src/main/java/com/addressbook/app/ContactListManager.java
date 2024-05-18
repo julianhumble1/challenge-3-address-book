@@ -41,4 +41,8 @@ public class ContactListManager {
         contact.setName(newName);
     }
 
+    public void editContactPhone(Contact contact, String newPhone) {
+        contact.setPhone(newPhone);
+    }
+
 }

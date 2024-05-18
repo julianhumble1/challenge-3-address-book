@@ -216,8 +216,8 @@ public class ContactListManagerTest {
         class US7ContactListManagerTests {
 
             @Test
-            @DisplayName("Test that when editContactName is called, the contact passed in changes name")
-            void editContactNameChangesContactsName() {
+            @DisplayName("Test that when editContactName is called, setName is called on the contact with the given name")
+            void editContactNameCallsSetNameWithCorrectName() {
                 // Arrange
                 Contact testContact = new Contact("Test", "07123456789", "test@test.com");
                 Contact spyContact = spy(testContact);
@@ -227,6 +227,20 @@ public class ContactListManagerTest {
                 testContactListManager.editContactName(spyContact, newName);
                 // Assert
                 verify(spyContact).setName(newName);
+            }
+
+            @Test
+            @DisplayName("Test that when editContactPhone is called, setPhone is called on the contact with the given phone")
+            void editContactPhoneCallsSetPhoneWithCorrectPhone() {
+                // Arrange
+                Contact testContact = new Contact("Test", "07123456789", "test@test.com");
+                Contact spyContact = spy(testContact);
+                testContactListManager.addContact(spyContact);
+                String newPhone = "07987654321";
+                // Act
+                testContactListManager.editContactPhone(spyContact, newPhone);
+                // Assert
+                verify(spyContact).setPhone(newPhone);
             }
 
         }
