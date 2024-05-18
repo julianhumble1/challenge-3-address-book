@@ -1,5 +1,6 @@
 package com.addressbook.app;
 
+import com.addressbook.app.utils.DetailsValidator;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
@@ -258,5 +259,25 @@ public class ContactListManagerTest {
             }
 
         }
+
+        @Nested
+        @DisplayName("US-8: I want to be unable to add a contact with the same phone number as another contact")
+        class US8ContactListManagerTests {
+
+            @Test
+            @DisplayName("Test that when a phone number which matches a contact already in the arrayList passed in," +
+                    "returns false")
+            void phoneNumberAlreadyMatchingReturnsFalse() {
+                // Arrange
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+                testContactListManager.addContact(existingContact);
+                String newContactPhone = "07123456789";
+                // Act
+                // Assert
+                assertFalse(testContactListManager.checkPhoneNotTaken(newContactPhone));
+            }
+        }
+
     }
 }

@@ -49,4 +49,11 @@ public class ContactListManager {
         contact.setEmail(newEmail);
     }
 
+    public boolean checkPhoneNotTaken(String phone) {
+        for (Contact contact: this.contactList) {
+            if (contact.getPhone().equals(phone)) return false;
+        }
+        return true;
+    }
+
 }
