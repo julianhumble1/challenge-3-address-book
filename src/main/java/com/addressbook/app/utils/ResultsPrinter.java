@@ -4,7 +4,7 @@ import com.addressbook.app.Contact;
 
 import java.util.ArrayList;
 
-public class ResultsPrinter {
+public abstract class ResultsPrinter {
 
     public static String displayContactsToUser(ArrayList<Contact> listOfContacts) {
         String stringToReturn = "";

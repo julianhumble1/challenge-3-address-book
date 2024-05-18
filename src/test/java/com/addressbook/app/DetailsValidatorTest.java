@@ -6,6 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -175,6 +178,24 @@ public class DetailsValidatorTest {
                 assertFalse(DetailsValidator.validateEmail(testEmail));
             }
 
+        }
+
+        @Nested
+        @DisplayName("US-8: I want to be unable to add a contact with the same phone number as another contact")
+        class US8DetailsValidatorTests {
+
+            @Test
+            @DisplayName("Test that when a phone number which matches a contact already in the arrayList passed in," +
+                    "returns true")
+            void phoneNumberAlreadyMatchingReturnsTrue() {
+                // Arrange
+                Contact existingContact = new Contact("Existing Contact", "07123456789", "existing@contact.com");
+                ArrayList<Contact> contactArrayList = new ArrayList<>(Arrays.asList(existingContact));
+                String newContactPhone = "07123456789";
+                // Act
+                // Assert
+                assertFalse(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
+            }
         }
     }
 }

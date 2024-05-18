@@ -1,6 +1,11 @@
 package com.addressbook.app.utils;
 
-public class DetailsValidator {
+import com.addressbook.app.Contact;
+
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+
+public abstract class DetailsValidator {
 
     // Purpose Validators
 
@@ -20,6 +25,15 @@ public class DetailsValidator {
 
     public static boolean validateEmail(String email) {
         return email.matches("\\S+@\\S+[.]\\S+");
+    }
+
+    // Already Taken Checkers
+
+    public static boolean checkPhoneNotTaken(String phone, ArrayList<Contact> contactList) {
+        for (Contact contact: contactList) {
+            if (contact.getPhone() == phone) return false;
+        }
+        return true;
     }
 
     // String Property Checkers
