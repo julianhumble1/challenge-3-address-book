@@ -244,6 +244,15 @@ public class ContactTest {
                 // Assert
                 assertEquals("07987654321", testContact.getPhone());
             }
+
+            @Test
+            @DisplayName("Test that setting an invalid phone throws IllegalArgumentException")
+            void testInvalidPhoneThrowsIllegalArgumentException() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContact.setPhone("00000000000"));
+            }
         }
     }
 }

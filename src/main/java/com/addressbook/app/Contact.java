@@ -25,7 +25,13 @@ public class Contact {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if (DetailsValidator.validatePhone(phone)) {
+            this.phone = phone;
+        } else {
+            throw new IllegalArgumentException("Phone number can't contain non-numeric characters and must be in the " +
+                    "form 07XXX XXXXXX");
+        }
+
     }
 
     public String getEmail() {
@@ -41,7 +47,7 @@ public class Contact {
         if(DetailsValidator.validatePhone(phone)) {
             this.phone = phone;
         } else {
-            throw new IllegalArgumentException("Phone number can't be empty or contain non-numeric characters" +
+            throw new IllegalArgumentException("Phone number can't contain non-numeric characters" +
                     " and must be in form 07XXX XXXXXX");
         }
         if (DetailsValidator.validateEmail(email)) {
