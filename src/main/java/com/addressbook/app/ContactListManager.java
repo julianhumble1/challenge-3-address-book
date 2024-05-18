@@ -37,5 +37,8 @@ public class ContactListManager {
         return searchResults;
     }
 
+    public void editContactName(Contact contact, String newName) {
+        contact.setName(newName);
+    }
 
 }

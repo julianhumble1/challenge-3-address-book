@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ContactListManagerTest {
 
@@ -210,6 +209,26 @@ public class ContactListManagerTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.removeContact(null));
             }
+        }
+
+        @Nested
+        @DisplayName("US-7: I want to be able to edit a contact's details")
+        class US7ContactListManagerTests {
+
+            @Test
+            @DisplayName("Test that when editContactName is called, the contact passed in changes name")
+            void editContactNameChangesContactsName() {
+                // Arrange
+                Contact testContact = new Contact("Test", "07123456789", "test@test.com");
+                Contact spyContact = spy(testContact);
+                testContactListManager.addContact(spyContact);
+                String newName = "New Name";
+                // Act
+                testContactListManager.editContactName(spyContact, newName);
+                // Assert
+                verify(spyContact).setName(newName);
+            }
+
         }
     }
 }
