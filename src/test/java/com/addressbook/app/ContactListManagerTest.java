@@ -123,7 +123,9 @@ public class ContactListManagerTest {
             void matchExactlyOneContactReturnsOnlyThatContact() {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test Test");
+                when(testContact1.getPhone()).thenReturn("07123456789");
                 when(testContact2.getName()).thenReturn("Test2 Test2");
+                when(testContact2.getPhone()).thenReturn("07987654321");
                 testContactListManager.addContact(testContact1);
                 testContactListManager.addContact(testContact2);
                 ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
@@ -141,6 +143,8 @@ public class ContactListManagerTest {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test1");
                 when(testContact2.getName()).thenReturn("Test2");
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact2.getPhone()).thenReturn("07987654321");
                 testContactListManager.addContact(testContact1);
                 testContactListManager.addContact(testContact2);
                 ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1, testContact2));
@@ -193,7 +197,9 @@ public class ContactListManagerTest {
             @DisplayName("Test that when there are multiple contacts in the list, only one contact is removed")
             void onlyOneContactRemovedWhenMultipleContactsInTheList() {
                 // Arrange
+                when(testContact.getPhone()).thenReturn("07987654321");
                 Contact testContact1 = mock(Contact.class);
+                when(testContact1.getPhone()).thenReturn("07123456789");
                 testContactListManager.addContact(testContact);
                 testContactListManager.addContact(testContact1);
                 int expected = testContactListManager.getContactList().size() - 1;
