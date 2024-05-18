@@ -91,8 +91,14 @@ public class AddressBookTest {
         @DisplayName("US-5: I want to be able to search my address book by name and see the results")
         class US5AddressBookTests {
 
-            private Contact testContact1 = mock(Contact.class);
-            private Contact testContact2 = mock(Contact.class);
+            private Contact testContact1;
+            private Contact testContact2;
+
+            @BeforeEach
+            void setUp() {
+                testContact1 = mock(Contact.class);
+                testContact2 = mock(Contact.class);
+            }
 
             @AfterEach
             void tearDown() {

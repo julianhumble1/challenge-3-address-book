@@ -2,8 +2,12 @@ package com.addressbook.app;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ContactListManagerTest {
 
@@ -82,6 +86,34 @@ public class ContactListManagerTest {
                 assertEquals(expected, testContactListManager.getContactList().size());
             }
 
+        }
+
+        @Nested
+        @DisplayName("US-5: I want to be able to search my address book by name and see the results")
+        class US5AddressBookTests {
+
+            private Contact testContact1 = mock(Contact.class);
+            private Contact testContact2 = mock(Contact.class);
+
+            @AfterEach
+            void tearDown() {
+                testContact1 = null;
+                testContact2 = null;
+            }
+
+            @Test
+            @DisplayName("Test that searching a name match to the only contact in the address book, findSearchResults" +
+                    "returns that contact as the only element")
+            void matchOnlyContactReturnsOnlyThatContact() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test Test");
+                testContactListManager.addContact(testContact1);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
+                // Act
+                ArrayList<Contact> actual = testContactListManager.findSearchResults("Test Test");
+                // Assert
+                assertEquals(expected, actual);
+            }
         }
     }
 }

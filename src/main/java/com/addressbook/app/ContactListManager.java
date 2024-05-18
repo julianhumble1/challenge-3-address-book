@@ -17,4 +17,14 @@ public class ContactListManager {
             this.contactList.add(newContact);
         }
     }
+
+    public ArrayList<Contact> findSearchResults(String searchTerm) {
+        ArrayList<Contact> searchResults = new ArrayList<>();
+        for (Contact contact: contactList) {
+            if ((contact.getName()).startsWith(searchTerm.trim())) {
+                searchResults.add(contact);
+            }
+        }
+        return searchResults;
+    }
 }
