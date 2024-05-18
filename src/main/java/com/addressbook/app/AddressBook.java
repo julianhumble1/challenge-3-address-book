@@ -1,5 +1,7 @@
 package com.addressbook.app;
 
+import com.addressbook.app.utils.DetailsValidator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,9 +16,11 @@ public class AddressBook {
     public void addContact(Contact newContact) {
         if (newContact == null) {
             throw new IllegalArgumentException("Null value is not valid");
+        } else if (!DetailsValidator.checkPhoneNotTaken(newContact.getPhone(), this.getContactList())){
+            throw new IllegalArgumentException("Can not add contact with same phone number as existing contact");
         } else {
             this.contactList.add(newContact);
-        };
+        }
     }
 
     public void removeContact(Contact contactToRemove) {

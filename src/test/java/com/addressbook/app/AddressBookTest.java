@@ -212,5 +212,29 @@ public class AddressBookTest {
                 assertThrows(IllegalArgumentException.class, () -> testAddressBook.removeContact(null));
             }
         }
+
+        @Nested
+        @DisplayName("US-8: I want to be unable to add a contact with " +
+                "the same phone number as another contact")
+        class US8ContactTests {
+
+            @Test
+            @DisplayName("Throws IllegalArgumentException adding a contact with phone number" +
+                    "already taken by another contact")
+            void alreadyTakenPhoneNumberThrowsIllegalArgumentException() {
+                // Arrange
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+
+                testAddressBook.addContact(existingContact);
+
+                Contact newContact = mock(Contact.class);
+                when(newContact.getPhone()).thenReturn("07123456789");
+                // Act
+
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(newContact));
+            }
+        }
     }
 }

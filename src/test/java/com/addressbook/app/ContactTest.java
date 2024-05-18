@@ -273,5 +273,6 @@ public class ContactTest {
                 assertThrows(IllegalArgumentException.class, () -> testContact.setEmail("New Email"));
             }
         }
+
     }
 }
