@@ -202,6 +202,15 @@ public class AddressBookTest {
                 assertEquals(expected, testAddressBook.getContactList().size());
             }
 
+            @Test
+            @DisplayName("Test that passing in a null contact throws IllegalArgumentException")
+            void nullContactThrowsIllegalArgumentException() {
+                // Arrange
+                testAddressBook.addContact(testContact);
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testAddressBook.removeContact(null));
+            }
         }
     }
 }

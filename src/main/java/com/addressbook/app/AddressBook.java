@@ -20,7 +20,12 @@ public class AddressBook {
     }
 
     public void removeContact(Contact contactToRemove) {
-        this.contactList.remove(contactToRemove);
+        if (contactToRemove == null) {
+            throw new IllegalArgumentException("Null value is not valid");
+        } else {
+            this.contactList.remove(contactToRemove);
+        }
+
     }
 
     public ArrayList<Contact> findSearchResults(String searchTerm) {
