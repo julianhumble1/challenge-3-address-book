@@ -153,6 +153,40 @@ public class AddressBookTest {
         @DisplayName("US-6: I want to be able to remove a contact from the address book")
         class US6AddressBookTests {
 
+            Contact testContact;
+
+            @BeforeEach
+            public void setUp() {
+                testContact = mock(Contact.class);
+            }
+
+            @AfterEach
+            public void tearDown() {
+                testContact = null;
+            }
+
+            @Test
+            @DisplayName("Test that when a contact is removed, the contactList length reduces by 1")
+            void removeContactReducesContactListLengthByOne() {
+                // Arrange
+                testAddressBook.addContact(testContact);
+                int expected = testAddressBook.getContactList().size() - 1;
+                // Act
+                testAddressBook.removeContact(testContact);
+                // Assert
+                assertEquals(expected, testAddressBook.getContactList().size());
+            }
+
+            @Test
+            @DisplayName("Test that when a contact is removed, the contactList no longer contains that contact")
+            void removeContactRemovesThatContactFromList() {
+                // Arrange
+                testAddressBook.addContact(testContact);
+                // Act
+                testAddressBook.removeContact(testContact);
+                // Assert
+                assertFalse(testAddressBook.getContactList().contains(testContact));
+            }
         }
     }
 }

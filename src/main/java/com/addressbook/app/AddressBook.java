@@ -19,6 +19,10 @@ public class AddressBook {
         };
     }
 
+    public void removeContact(Contact contactToRemove) {
+        this.contactList.remove(contactToRemove);
+    }
+
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
