@@ -114,6 +114,23 @@ public class ContactListManagerTest {
                 // Assert
                 assertEquals(expected, actual);
             }
+
+            @Test
+            @DisplayName("Test that searching a name match to exactly one of multiple contacts in the address," +
+                    " findSearchResults() returns an arrayList containing only that element")
+            void matchExactlyOneContactReturnsOnlyThatContact() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test Test");
+                when(testContact2.getName()).thenReturn("Test2 Test2");
+                testContactListManager.addContact(testContact1);
+                testContactListManager.addContact(testContact2);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
+                // Act
+                ArrayList<Contact> actual = testContactListManager.findSearchResults("Test Test");
+                // Assert
+                assertEquals(expected, actual);
+
+            }
         }
     }
 }
