@@ -263,6 +263,15 @@ public class ContactTest {
                 // Assert
                 assertEquals("new@new.new", testContact.getEmail());
             }
+
+            @Test
+            @DisplayName("Test that setting an invalid email throws IllegalArgumentException")
+            void testInvalidEmailThrowsIllegalArgumentException() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContact.setEmail("New Email"));
+            }
         }
     }
 }
