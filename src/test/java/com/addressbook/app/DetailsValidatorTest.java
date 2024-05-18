@@ -213,6 +213,17 @@ public class DetailsValidatorTest {
                 // Assert
                 assertTrue(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
             }
+
+            @Test
+            @DisplayName("Test that an empty array list passed in returns true")
+            void emptyArrayListInCheckPhoneNotTakenReturnsTrue() {
+                // Arrange
+                ArrayList<Contact> contactArrayList = new ArrayList<>();
+                String newContactPhone = "07123456781";
+                // Act
+                // Assert
+                assertTrue(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
+            }
         }
     }
 }
