@@ -253,6 +253,16 @@ public class ContactTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContact.setPhone("00000000000"));
             }
+
+            @Test
+            @DisplayName("Test that when changing the contact's email to a valid email sets the expected resulting email")
+            void testCorrectNewEmailIsAssigned() {
+                // Arrange
+                // Act
+                testContact.setEmail("new@new.new");
+                // Assert
+                assertEquals("new@new.new", testContact.getEmail());
+            }
         }
     }
 }

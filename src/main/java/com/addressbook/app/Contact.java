@@ -31,11 +31,14 @@ public class Contact {
             throw new IllegalArgumentException("Phone number can't contain non-numeric characters and must be in the " +
                     "form 07XXX XXXXXX");
         }
-
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Contact(String name, String phone, String email) {
