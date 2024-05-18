@@ -78,9 +78,11 @@ public class ContactListManagerTest {
             void canAddContactsWhenThereAreAlreadyContacts() {
                 // Arrange
                 testContactListManager.addContact(testContact);
+                when(testContact.getPhone()).thenReturn("07987654321");
                 int expected = testContactListManager.getContactList().size() + 1;
                 // Act
                 Contact testContact1 = mock(Contact.class);
+                when(testContact1.getPhone()).thenReturn("07123456789");
                 testContactListManager.addContact(testContact1);
                 // Assert
                 assertEquals(expected, testContactListManager.getContactList().size());
