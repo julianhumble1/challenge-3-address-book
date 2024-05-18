@@ -206,5 +206,27 @@ public class ContactTest {
                 assertEquals(expected, returnedString);
             }
         }
+
+        @Nested
+        @DisplayName("US-7: I want to be able to edit a contact's details")
+        class US7ContactTests{
+
+            String initialName = "Test Test";
+            String testPhone = "07123456789";
+            String testEmail = "test@test.test";
+            Contact testContact = new Contact(initialName, testPhone, testEmail);
+
+            @Test
+            @DisplayName("Test that when changing the contact's name to a valid name sets the expected resulting name")
+            void testCorrectNewNameIsAssigned() {
+                // Arrange
+                // Act
+                testContact.setName("New Name");
+                // Assert
+                assertEquals("New Name", testContact.getName());
+            }
+
+
+        }
     }
 }
