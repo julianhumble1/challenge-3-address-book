@@ -3,6 +3,7 @@ package com.addressbook.app;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class ContactListManagerTest {
@@ -48,6 +49,16 @@ public class ContactListManagerTest {
                 testContactListManager.addContact(testContact);
                 // Assert
                 assertEquals(expected, testContactListManager.getContactList().size());
+            }
+
+            @Test
+            @DisplayName("Resulting Contact includes the added contact")
+            void resultingContactListContainsAddedContact() {
+                // Arrange
+                // Act
+                testContactListManager.addContact(testContact);
+                // Assert
+                assertTrue(testContactListManager.getContactList().contains(testContact));
             }
 
         }
