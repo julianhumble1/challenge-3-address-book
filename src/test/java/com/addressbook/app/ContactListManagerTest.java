@@ -265,8 +265,8 @@ public class ContactListManagerTest {
         class US8ContactListManagerTests {
 
             @Test
-            @DisplayName("Test that when a phone number which matches a contact already in the arrayList passed in," +
-                    "returns false")
+            @DisplayName("Test that when a phone number in checkPhoneNotTaken matches a contact already in the" +
+                    " contactList returns False")
             void phoneNumberAlreadyMatchingReturnsFalse() {
                 // Arrange
                 Contact existingContact = mock(Contact.class);
@@ -276,6 +276,19 @@ public class ContactListManagerTest {
                 // Act
                 // Assert
                 assertFalse(testContactListManager.checkPhoneNotTaken(newContactPhone));
+            }
+            @Test
+            @DisplayName("Test that when a phone number which doesn't match a contact already in the contactList," +
+                    "returns true")
+            void phoneNumberNotAlreadyMatchingReturnsTrue() {
+                // Arrange
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+                testContactListManager.addContact(existingContact);
+                String newContactPhone = "07123456781";
+                // Act
+                // Assert
+                assertTrue(testContactListManager.checkPhoneNotTaken(newContactPhone));
             }
         }
 
