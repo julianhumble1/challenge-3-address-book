@@ -13,7 +13,13 @@ public class Contact {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (DetailsValidator.validateName(name)) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Name entered can't be empty or null");
+        }
+
+
     }
 
     public String getPhone() {

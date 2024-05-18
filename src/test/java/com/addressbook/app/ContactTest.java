@@ -226,7 +226,14 @@ public class ContactTest {
                 assertEquals("New Name", testContact.getName());
             }
 
-
+            @Test
+            @DisplayName("Test that setting an invalid name throws IllegalArgumentException")
+            void testInvalidNameThrowsIllegalArgumentException() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContact.setName(""));
+            }
         }
     }
 }
