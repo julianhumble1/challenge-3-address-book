@@ -187,6 +187,21 @@ public class AddressBookTest {
                 // Assert
                 assertFalse(testAddressBook.getContactList().contains(testContact));
             }
+
+            @Test
+            @DisplayName("Test that when there are multiple contacts in the list, only one contact is removed")
+            void onlyOneContactRemovedWhenMultipleContactsInTheList() {
+                // Arrange
+                Contact testContact1 = mock(Contact.class);
+                testAddressBook.addContact(testContact);
+                testAddressBook.addContact(testContact1);
+                int expected = testAddressBook.getContactList().size() - 1;
+                // Act
+                testAddressBook.removeContact(testContact1);
+                // Assert
+                assertEquals(expected, testAddressBook.getContactList().size());
+            }
+
         }
     }
 }
