@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
 
@@ -117,7 +116,7 @@ public class AddressBookTest {
 
             @Test
             @DisplayName("Test that searching a name match to exactly one of multiple contacts in the address," +
-                    " findSearchResults() returns an arrayList of length 1")
+                    " findSearchResults() returns an arrayList containing only that element")
             void matchExactlyOneContactReturnsOnlyThatContact() {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test Test");
@@ -130,6 +129,34 @@ public class AddressBookTest {
                 // Assert
                 assertEquals(expected, actual);
 
+            }
+
+            @Test
+            @DisplayName("Test that searching a partial match to two contacts, findSearchResults() returns an arrayList" +
+                    "containg both matches")
+            void partialMatchTwoContactReturnsBothContacts() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test1");
+                when(testContact2.getName()).thenReturn("Test2");
+                testAddressBook.addContact(testContact1);
+                testAddressBook.addContact(testContact2);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1, testContact2));
+                // Act
+                ArrayList<Contact> actual = testAddressBook.findSearchResults("Test");
+                // Assert
+                assertEquals(expected, actual);
+            }
+
+            @Test
+            @DisplayName("Test that when using performSearchAndDisplay(), findSearchResults() is called")
+            void performSearchAndDisplayCallsFindSearchResults() {
+                // Arrange
+                AddressBook spyAddressBook = spy(testAddressBook);
+                String testSearchTerm = "test";
+                // Act
+                spyAddressBook.performSearchAndDisplay(testSearchTerm);
+                // Assert
+                verify(spyAddressBook, times(1)).findSearchResults(anyString());
             }
         }
     }

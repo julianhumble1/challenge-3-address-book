@@ -22,11 +22,14 @@ public class AddressBook {
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
-            if (searchTerm.contains(contact.getName())) {
+            if ((contact.getName()).startsWith(searchTerm.trim())) {
                 searchResults.add(contact);
             }
         }
         return searchResults;
     }
 
+    public void performSearchAndDisplay(String searchTerm) {
+        ArrayList<Contact> searchResults = this.findSearchResults(searchTerm);
+    }
 }
