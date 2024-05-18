@@ -29,7 +29,4 @@ public class AddressBook {
         return searchResults;
     }
 
-    public void performSearchAndDisplay(String searchTerm) {
-        ArrayList<Contact> searchResults = this.findSearchResults(searchTerm);
-    }
 }

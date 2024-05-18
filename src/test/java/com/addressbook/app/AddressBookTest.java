@@ -133,7 +133,7 @@ public class AddressBookTest {
 
             @Test
             @DisplayName("Test that searching a partial match to two contacts, findSearchResults() returns an arrayList" +
-                    "containg both matches")
+                    "containing both matches")
             void partialMatchTwoContactReturnsBothContacts() {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test1");
@@ -146,6 +146,12 @@ public class AddressBookTest {
                 // Assert
                 assertEquals(expected, actual);
             }
+
+        }
+
+        @Nested
+        @DisplayName("US-6: I want to be able to remove a contact from the address book")
+        class US6AddressBookTests {
 
         }
     }
