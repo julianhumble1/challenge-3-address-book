@@ -234,6 +234,16 @@ public class ContactTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContact.setName(""));
             }
+
+            @Test
+            @DisplayName("Test that when changing the contact's phone to a valid number sets the expected resulting phone")
+            void testCorrectNewPhoneIsAssigned() {
+                // Arrange
+                // Act
+                testContact.setPhone("07987654321");
+                // Assert
+                assertEquals("07987654321", testContact.getPhone());
+            }
         }
     }
 }

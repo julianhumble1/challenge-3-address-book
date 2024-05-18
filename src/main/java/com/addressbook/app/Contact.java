@@ -18,12 +18,14 @@ public class Contact {
         } else {
             throw new IllegalArgumentException("Name entered can't be empty or null");
         }
-
-
     }
 
     public String getPhone() {
         return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
