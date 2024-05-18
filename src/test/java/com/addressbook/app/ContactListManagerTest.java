@@ -69,6 +69,19 @@ public class ContactListManagerTest {
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(null));
             }
 
+            @Test
+            @DisplayName("Can add a contact when there is already a contact in the list")
+            void canAddContactsWhenThereAreAlreadyContacts() {
+                // Arrange
+                testContactListManager.addContact(testContact);
+                int expected = testContactListManager.getContactList().size() + 1;
+                // Act
+                Contact testContact1 = mock(Contact.class);
+                testContactListManager.addContact(testContact1);
+                // Assert
+                assertEquals(expected, testContactListManager.getContactList().size());
+            }
+
         }
     }
 }
