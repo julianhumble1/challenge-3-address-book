@@ -200,6 +200,16 @@ public class ContactListManagerTest {
                 // Assert
                 assertEquals(expected, testContactListManager.getContactList().size());
             }
+
+            @Test
+            @DisplayName("Test that passing in a null contact throws IllegalArgumentException")
+            void nullContactThrowsIllegalArgumentException() {
+                // Arrange
+                testContactListManager.addContact(testContact);
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.removeContact(null));
+            }
         }
     }
 }
