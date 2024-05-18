@@ -2,8 +2,7 @@ package com.addressbook.app;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class ContactListManagerTest {
@@ -52,13 +51,22 @@ public class ContactListManagerTest {
             }
 
             @Test
-            @DisplayName("Resulting Contact includes the added contact")
+            @DisplayName("Resulting ContactList includes the added contact")
             void resultingContactListContainsAddedContact() {
                 // Arrange
                 // Act
                 testContactListManager.addContact(testContact);
                 // Assert
                 assertTrue(testContactListManager.getContactList().contains(testContact));
+            }
+
+            @Test
+            @DisplayName("Throws IllegalArgumentException when Null is added")
+            void throwsIllegalArgumentExceptionForNull() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(null));
             }
 
         }

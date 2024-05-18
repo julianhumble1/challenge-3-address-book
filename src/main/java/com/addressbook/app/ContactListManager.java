@@ -11,6 +11,10 @@ public class ContactListManager {
     }
 
     public void addContact(Contact newContact) {
-        this.contactList.add(newContact);
+        if (newContact == null) {
+            throw new IllegalArgumentException("Null value is not valid");
+        } else {
+            this.contactList.add(newContact);
+        }
     }
 }
