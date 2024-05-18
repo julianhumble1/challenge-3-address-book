@@ -175,6 +175,17 @@ public class ContactListManagerTest {
                 // Assert
                 assertEquals(expected, testContactListManager.getContactList().size());
             }
+
+            @Test
+            @DisplayName("Test that when a contact is removed, the contactList no longer contains that contact")
+            void removeContactRemovesThatContactFromList() {
+                // Arrange
+                testContactListManager.addContact(testContact);
+                // Act
+                testContactListManager.removeContact(testContact);
+                // Assert
+                assertFalse(testContactListManager.getContactList().contains(testContact));
+            }
         }
     }
 }
