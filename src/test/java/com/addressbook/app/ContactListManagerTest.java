@@ -131,6 +131,22 @@ public class ContactListManagerTest {
                 assertEquals(expected, actual);
 
             }
+
+            @Test
+            @DisplayName("Test that searching a partial match to two contacts, findSearchResults() returns an arrayList" +
+                    "containing both matches")
+            void partialMatchTwoContactReturnsBothContacts() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test1");
+                when(testContact2.getName()).thenReturn("Test2");
+                testContactListManager.addContact(testContact1);
+                testContactListManager.addContact(testContact2);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1, testContact2));
+                // Act
+                ArrayList<Contact> actual = testContactListManager.findSearchResults("Test");
+                // Assert
+                assertEquals(expected, actual);
+            }
         }
     }
 }
