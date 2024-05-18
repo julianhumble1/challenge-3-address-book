@@ -13,6 +13,8 @@ public class ContactListManager {
     public void addContact(Contact newContact) {
         if (newContact == null) {
             throw new IllegalArgumentException("Null value is not valid");
+        } else if (!checkPhoneNotTaken(newContact.getPhone())) {
+            throw new IllegalArgumentException("Phone number inputted already matches contact in contact list.");
         } else {
             this.contactList.add(newContact);
         }

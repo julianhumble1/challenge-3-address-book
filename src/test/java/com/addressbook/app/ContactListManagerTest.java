@@ -290,6 +290,24 @@ public class ContactListManagerTest {
                 // Assert
                 assertTrue(testContactListManager.checkPhoneNotTaken(newContactPhone));
             }
+
+            @Test
+            @DisplayName("Throws IllegalArgumentException adding a contact with phone number" +
+                    "already taken by another contact")
+            void alreadyTakenPhoneNumberThrowsIllegalArgumentException() {
+                // Arrange
+                Contact existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+
+                testContactListManager.addContact(existingContact);
+
+                Contact newContact = mock(Contact.class);
+                when(newContact.getPhone()).thenReturn("07123456789");
+                // Act
+
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(newContact));
+            }
         }
 
     }
