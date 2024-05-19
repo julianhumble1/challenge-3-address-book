@@ -181,49 +181,6 @@ public class DetailsValidatorTest {
             }
 
         }
-
-//        @Nested
-//        @DisplayName("US-8: I want to be unable to add a contact with the same phone number as another contact")
-//        class US8DetailsValidatorTests {
-//
-//            @Test
-//            @DisplayName("Test that when a phone number which matches a contact already in the arrayList passed in," +
-//                    "returns false")
-//            void phoneNumberAlreadyMatchingReturnsFalse() {
-//                // Arrange
-//                Contact existingContact = mock(Contact.class);
-//                when(existingContact.getPhone()).thenReturn("07123456789");
-//                ArrayList<Contact> contactArrayList = new ArrayList<>(Arrays.asList(existingContact));
-//                String newContactPhone = "07123456789";
-//                // Act
-//                // Assert
-//                assertFalse(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
-//            }
-//
-//            @Test
-//            @DisplayName("Test that when a phone number which doesn't match a contact already in the arrayList passed in," +
-//                    "returns true")
-//            void phoneNumberNotAlreadyMatchingReturnsTrue() {
-//                // Arrange
-//                Contact existingContact = mock(Contact.class);
-//                when(existingContact.getPhone()).thenReturn("07123456789");
-//                ArrayList<Contact> contactArrayList = new ArrayList<>(Arrays.asList(existingContact));
-//                String newContactPhone = "07123456781";
-//                // Act
-//                // Assert
-//                assertTrue(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
-//            }
-//
-//            @Test
-//            @DisplayName("Test that an empty array list passed in returns true")
-//            void emptyArrayListInCheckPhoneNotTakenReturnsTrue() {
-//                // Arrange
-//                ArrayList<Contact> contactArrayList = new ArrayList<>();
-//                String newContactPhone = "07123456781";
-//                // Act
-//                // Assert
-//                assertTrue(DetailsValidator.checkPhoneNotTaken(newContactPhone, contactArrayList));
-//            }
         }
     }
 

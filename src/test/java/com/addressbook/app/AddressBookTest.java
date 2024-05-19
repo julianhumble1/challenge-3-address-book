@@ -18,10 +18,7 @@ public class AddressBookTest {
         private AddressBook testAddressBook;
 
         @BeforeEach
-        public void setUp() {
-            testAddressBook = new AddressBook();
-
-        }
+        public void setUp() { testAddressBook = new AddressBook(); }
 
         @AfterEach
         public void tearDown() {
