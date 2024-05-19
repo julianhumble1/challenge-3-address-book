@@ -124,7 +124,7 @@ public class AddressBookTest {
         }
 
         @Nested
-        @DisplayName("Us-15: I want to be able to trigger removing a contact")
+        @DisplayName("US-15: I want to be able to trigger removing a contact")
         class US15AddressBookTests {
 
             @Test
@@ -146,6 +146,18 @@ public class AddressBookTest {
                 assertEquals(expected, actual);
             }
 
+        }
+
+        @Nested
+        @DisplayName("US-16: I want to be able to trigger editing a contact's name")
+        class US16AddressBookTests {
+
+            @Test
+            @Disabled
+            @DisplayName("Test that actOnUserInput, with correct inputs and a valid new name, results in the contact having the expected name")
+            void actOnUserInputLeadsToContactHavingCorrectNewName() {
+
+            }
         }
     }
 }
