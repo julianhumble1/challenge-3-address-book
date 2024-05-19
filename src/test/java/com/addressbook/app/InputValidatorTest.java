@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InputValidatorTest {
@@ -33,6 +34,15 @@ public class InputValidatorTest {
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> InputValidator.validateIntInRange(3, 4, 5));
+            }
+
+            @Test
+            @DisplayName("Test validateIntInRange doesn't throw exception if user choice is equal to max choice")
+            void userChoiceEqualMaxChoiceNoException() {
+                // Arrange
+                // Act
+                // Assert
+                assertDoesNotThrow(() -> InputValidator.validateIntInRange(5, 1, 5));
             }
         }
 
