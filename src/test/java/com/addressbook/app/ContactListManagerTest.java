@@ -332,14 +332,20 @@ public class ContactListManagerTest {
         @DisplayName("US-8: I want to be unable to add a contact with the same phone number as another contact")
         class US8ContactListManagerTests {
 
+            Contact existingContact;
+
+            @BeforeEach
+            void setUp() {
+                existingContact = mock(Contact.class);
+                when(existingContact.getPhone()).thenReturn("07123456789");
+                when(existingContact.getEmail()).thenReturn("test@test.test");
+            }
+
             @Test
             @DisplayName("Test that when a phone number in checkPhoneNotTaken matches a contact already in the" +
                     " contactList throws IllegalArgumentException")
             void phoneNumberAlreadyMatchingReturnsFalse() {
                 // Arrange
-                Contact existingContact = mock(Contact.class);
-                when(existingContact.getPhone()).thenReturn("07123456789");
-                when(existingContact.getEmail()).thenReturn("test@test.test");
                 testContactListManager.addContact(existingContact);
 
                 String newContactPhone = "07123456789";
@@ -352,9 +358,6 @@ public class ContactListManagerTest {
                     "doesn't throw IllegalArgumentException")
             void phoneNumberNotAlreadyMatchingDoesNotThrowException() {
                 // Arrange
-                Contact existingContact = mock(Contact.class);
-                when(existingContact.getPhone()).thenReturn("07123456789");
-                when(existingContact.getEmail()).thenReturn("test@test.test");
                 testContactListManager.addContact(existingContact);
                 String newContactPhone = "07123456781";
                 // Act
@@ -367,10 +370,6 @@ public class ContactListManagerTest {
                     "already taken by another contact")
             void alreadyTakenPhoneNumberThrowsIllegalArgumentException() {
                 // Arrange
-                Contact existingContact = mock(Contact.class);
-                when(existingContact.getPhone()).thenReturn("07123456789");
-                when(existingContact.getEmail()).thenReturn("existing@existing.existing");
-
                 testContactListManager.addContact(existingContact);
 
                 Contact newContact = mock(Contact.class);
