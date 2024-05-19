@@ -341,6 +341,11 @@ public class ContactListManagerTest {
                 when(existingContact.getEmail()).thenReturn("test@test.test");
             }
 
+            @AfterEach
+            public void tearDown() {
+                existingContact = null;
+            }
+
             @Test
             @DisplayName("Test that when a phone number in checkPhoneNotTaken matches a contact already in the" +
                     " contactList throws IllegalArgumentException")
@@ -380,6 +385,22 @@ public class ContactListManagerTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(newContact));
             }
+
+            @Test
+            @DisplayName("Test that passing a contact in addContact with a phone matching another contact" +
+                    "doesn't increase contactlist length")
+            void failedAddContactDoesNotIncreaseContactListLength() {
+                // Arrange
+                testContactListManager.addContact(existingContact);
+                int expected = testContactListManager.getContactList().size();
+
+                Contact newContact = mock(Contact.class);
+                when(newContact.getPhone()).thenReturn("07123456789");
+                when(newContact.getEmail()).thenReturn("new@new.new");
+                // Act
+                // Assert
+                assertEquals(expected, testContactListManager.getContactList().size());
+            }
         }
 
         @Nested
@@ -416,6 +437,11 @@ public class ContactListManagerTest {
                 testContact = mock(Contact.class);
                 when(testContact.getEmail()).thenReturn("test@test.test");
                 when(testContact.getPhone()).thenReturn("07123456789");
+            }
+
+            @AfterEach
+            public void tearDown() {
+                testContact = null;
             }
 
             @Test
