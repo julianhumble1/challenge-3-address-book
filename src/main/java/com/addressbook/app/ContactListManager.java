@@ -40,6 +40,7 @@ public class ContactListManager {
     }
 
     public void editContactName(Contact contact, String newName) {
+        checkContactInContactList(contact);
         contact.setName(newName);
     }
 
