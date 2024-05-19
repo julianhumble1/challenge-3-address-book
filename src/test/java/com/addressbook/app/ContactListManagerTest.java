@@ -208,10 +208,15 @@ public class ContactListManagerTest {
             void onlyOneContactRemovedWhenMultipleContactsInTheList() {
                 // Arrange
                 when(testContact.getPhone()).thenReturn("07987654321");
+                when(testContact.getEmail()).thenReturn("test@test.test");
+
                 Contact testContact1 = mock(Contact.class);
                 when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
+
                 testContactListManager.addContact(testContact);
                 testContactListManager.addContact(testContact1);
+
                 int expected = testContactListManager.getContactList().size() - 1;
                 // Act
                 testContactListManager.removeContact(testContact1);
