@@ -32,7 +32,7 @@ public class ContactListManager {
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
-            if ((contact.getName().toLowerCase()).startsWith(searchTerm.trim())) {
+            if ( contact.getName().startsWith(searchTerm.trim()) || contact.getName().toLowerCase().startsWith(searchTerm.trim())) {
                 searchResults.add(contact);
             }
         }
