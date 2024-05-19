@@ -49,4 +49,11 @@ public abstract class DetailsValidator {
         return string.trim().startsWith("07");
     }
 
+    // NULL CHECKER
+    public static void checkNotNull(Object object) {
+        if (object == null) {
+            throw new IllegalArgumentException("Null value not accepted");
+        }
+    }
+
 }

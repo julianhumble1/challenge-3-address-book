@@ -1,5 +1,7 @@
 package com.addressbook.app;
 
+import com.addressbook.app.utils.DetailsValidator;
+
 import java.util.ArrayList;
 
 public class ContactListManager {
@@ -13,10 +15,9 @@ public class ContactListManager {
     // ADD AND REMOVE CONTACTS
 
     public void addContact(Contact newContact) {
+        DetailsValidator.checkNotNull(newContact);
         checkEmailNotTaken(newContact.getEmail());
-        if (newContact == null) {
-            throw new IllegalArgumentException("Null value is not valid");
-        } else if (!checkPhoneNotTaken(newContact.getPhone())) {
+        if (!checkPhoneNotTaken(newContact.getPhone())) {
             throw new IllegalArgumentException("Phone number inputted already matches contact in contact list.");
         } else {
             this.contactList.add(newContact);
