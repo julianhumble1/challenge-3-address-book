@@ -55,6 +55,7 @@ public class ContactListManager {
     }
 
     public void editContactEmail(Contact contact, String newEmail) {
+        checkContactInContactList(contact);
         contact.setEmail(newEmail);
     }
 

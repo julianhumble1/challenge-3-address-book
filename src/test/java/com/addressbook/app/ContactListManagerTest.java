@@ -249,8 +249,6 @@ public class ContactListManagerTest {
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.editContactName(testContact, "New Name"));
             }
 
-
-
             @Test
             @DisplayName("Test that when editContactPhone is called, setPhone is called on the contact with the given phone")
             void editContactPhoneCallsSetPhoneWithCorrectPhone() {
@@ -290,7 +288,18 @@ public class ContactListManagerTest {
                 // Assert
                 verify(spyContact).setEmail(newEmail);
             }
+        }
 
+        @Test
+        @DisplayName("Test editContactPhone throws IllegalArgumentException if Contact passed in is not" +
+                "in CLM's contact list")
+        void contactNotInContactListInEditContactPhoneThrowsIllegalArgumentException() {
+            // Arrange
+            Contact testContact = mock(Contact.class);
+            when(testContact.getPhone()).thenReturn("07123456789");
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> testContactListManager.editContactEmail(testContact, "new@new.new"));
         }
 
         @Nested
