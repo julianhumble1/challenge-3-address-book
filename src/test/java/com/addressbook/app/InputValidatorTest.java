@@ -18,13 +18,21 @@ public class InputValidatorTest {
         class US13InputValidatorTests {
 
             @Test
-            @DisplayName("Test validateIntInRange throws IllegalArgumentException if userChoice is not between" +
-                    "min and max choice")
-            void testOutOfBoundsThrowsIllegalArgumentException() {
+            @DisplayName("Test validateIntInRange throws IllegalArgumentException if userChoice is above maxChoice")
+            void testAboveBoundsThrowsIllegalArgumentException() {
                 // Arrange
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> InputValidator.validateIntInRange(10, 1, 5));
+            }
+
+            @Test
+            @DisplayName("Test validateIntInRange throws IllegalArgumentException if userChoice is below minChoice")
+            void testBelowBoundsThrowsIllegalArgumentException() {
+                // Arrange
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> InputValidator.validateIntInRange(3, 4, 5));
             }
         }
 
