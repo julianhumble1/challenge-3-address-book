@@ -53,14 +53,14 @@ public class AddressBook {
     }
 
     private void userSearchByName() {
-        String searchTerm = UserInputMenu.takeNameForSearch();
+        String searchTerm = UserInputMenu.takeStringWithPrompt("Please enter a search term: ");
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
     }
 
     private void userEditContact() {
         System.out.println("Please select a result to edit: ");
-        String searchTerm = UserInputMenu.takeNameForSearch();
+        String searchTerm = UserInputMenu.takeStringWithPrompt("Please enter a search term: ");
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
         if (searchResults.isEmpty()) {
@@ -85,7 +85,7 @@ public class AddressBook {
     }
 
     private void userRemoveContact() {
-        String searchTerm = UserInputMenu.takeNameForSearch();
+        String searchTerm = UserInputMenu.takeStringWithPrompt("Please enter a search term: ");
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
         if (searchResults.isEmpty()) {
