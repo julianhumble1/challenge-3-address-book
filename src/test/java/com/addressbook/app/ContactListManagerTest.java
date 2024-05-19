@@ -317,5 +317,34 @@ public class ContactListManagerTest {
             }
         }
 
+        @Nested
+        @DisplayName("US-9: I want to be unable to edit a contact to have the same phone number as another contact")
+        class US9ContactListManagerTests {
+
+            @Test
+            @DisplayName("Test IllegalArgumentException thrown if new phone in editContactPhone matches already" +
+                    "existing contact's phone")
+            void matchingPhoneInEditContactPhoneThrowsIllegalArgumentException() {
+                // Arrange
+                Contact testContact1 = mock(Contact.class);
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                testContactListManager.addContact(testContact1);
+
+                Contact testContact2 = mock(Contact.class);
+                when(testContact2.getPhone()).thenReturn("07987654321");
+                testContactListManager.addContact(testContact2);
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.editContactPhone(testContact2, "07123456789"));
+            }
+
+            @Test
+            @DisplayName("Test editContactPhone throws IllegalArgumentException if Contact passed in is not" +
+                    "in CLM's contact list")
+            void contactNotInContactListThrowsIllegalArgumentException() {
+
+            }
+        }
+
     }
 }

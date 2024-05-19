@@ -44,7 +44,12 @@ public class ContactListManager {
     }
 
     public void editContactPhone(Contact contact, String newPhone) {
-        contact.setPhone(newPhone);
+        if (checkPhoneNotTaken(newPhone)) {
+            contact.setPhone(newPhone);
+        } else {
+            throw new IllegalArgumentException("New phone number passed in matches another contact's phone number");
+        }
+
     }
 
     public void editContactEmail(Contact contact, String newEmail) {
