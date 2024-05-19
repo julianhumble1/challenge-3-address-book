@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserInputMenuTest {
 
@@ -57,6 +56,20 @@ public class UserInputMenuTest {
                 // Assert
                 assertThrows(Exception.class, () -> UserInputMenu.takeUserNumberChoice(1, 5));
 
+            }
+
+            @Test
+            @DisplayName("takeContactDetailsFromUser returns expected Array")
+            void takeContactDetailsFromUserReturnsExpectedArray() {
+                // Arrange
+                String input = "Test\n07123456789\ntest@test.test";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                String[] expected = new String[] {"Test", "07123456789", "test@test.test"};
+                // Act
+                String[] actual = UserInputMenu.takeContactDetailsFromUser();
+                // Assert
+                assertArrayEquals(expected, actual);
             }
         }
     }
