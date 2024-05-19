@@ -22,7 +22,7 @@ public class AddressBook {
         return stringToReturn;
     }
 
-    private void userAddContact() {
+    public void userAddContact() {
         String[] contactDetails = UserInputMenu.takeContactDetailsFromUser();
         try {
             Contact newContact = new Contact(contactDetails[0], contactDetails[1], contactDetails[2]);

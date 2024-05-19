@@ -30,6 +30,7 @@ public class UserInputMenuTest {
                 int result = UserInputMenu.takeUserNumberChoice(1, 5);
                 // Assert
                 assertEquals(3, result);
+                System.setIn(System.in);
             }
 
             @Test
@@ -43,6 +44,7 @@ public class UserInputMenuTest {
                 int result = UserInputMenu.takeUserNumberChoice(1, 5);
                 // Assert
                 assertEquals(3, result);
+                System.setIn(System.in);
             }
 
             @Test
@@ -55,6 +57,7 @@ public class UserInputMenuTest {
                 // Act
                 // Assert
                 assertThrows(Exception.class, () -> UserInputMenu.takeUserNumberChoice(1, 5));
+                System.setIn(System.in);
 
             }
 
@@ -70,6 +73,7 @@ public class UserInputMenuTest {
                 String[] actual = UserInputMenu.takeContactDetailsFromUser();
                 // Assert
                 assertArrayEquals(expected, actual);
+                System.setIn(System.in);
             }
         }
     }

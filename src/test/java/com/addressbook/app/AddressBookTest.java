@@ -2,6 +2,7 @@ package com.addressbook.app;
 
 import org.junit.jupiter.api.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,7 +27,7 @@ public class AddressBookTest {
 
         @Nested
         @DisplayName("US-5: I want to be able to search my address book by name and see the results")
-        class NewUS5AddressBookTests{
+        class US5AddressBookTests {
 
             @Test
             @DisplayName("Test that displayContactsToUser() returns the desired string")
@@ -49,6 +50,28 @@ public class AddressBookTest {
                 // Assert
                 assertEquals(expectedString, returnedString);
             }
+
+        }
+
+        @Nested
+        @DisplayName("US-13: I want to be able to trigger adding a contact")
+        class US13AddressBookTests{
+
+            @Test
+            @DisplayName("Test after performing userAddContact with valid contact details, AB's CLM contains expected contact")
+            void userAddContactWithValidContactDetailsResultsInNewContactInCLM() {
+               // Arrange
+                String input = "Test\n07123456789\ntest@test.test";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+
+                Contact expected = new Contact("Test", "07123456789", "test@test.test");
+                // Act
+                testAddressBook.userAddContact();
+                // Assert
+                testAddressBook.getContactListManager().getContactList().contains(expected);
+            }
+
 
         }
     }
