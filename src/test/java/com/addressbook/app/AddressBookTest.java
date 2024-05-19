@@ -58,20 +58,20 @@ public class AddressBookTest {
         class US13AddressBookTests{
 
             @Test
-            @DisplayName("Test after performing actOnUserChoice with valid contact details, AB's CLM contains expected contact")
-            void actOnUserChoiceValidContactDetailsResultsInNewContactInCLM() {
-               // Arrange
+            @DisplayName("Test after performing actOnUserChoice with valid contact details, AB's CLM increases length by 1")
+            void actOnUserChoiceValidContactDetailsIncreaseCLMLengthByOne() {
+                // Arrange
                 String input = "Test\n07123456789\ntest@test.test";
                 ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
                 System.setIn(in);
 
-                Contact expected = new Contact("Test", "07123456789", "test@test.test");
+                int expected = testAddressBook.getContactListManager().getContactList().size() + 1;
                 // Act
                 testAddressBook.actOnUserChoice(1);
+                int actual = testAddressBook.getContactListManager().getContactList().size();
                 // Assert
-                testAddressBook.getContactListManager().getContactList().contains(expected);
+                assertEquals(expected, actual);
             }
-
 
         }
     }
