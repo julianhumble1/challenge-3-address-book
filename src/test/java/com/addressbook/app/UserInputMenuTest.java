@@ -112,5 +112,23 @@ public class UserInputMenuTest {
                 assertEquals("New Name", actual);
             }
         }
+
+        @Nested
+        @DisplayName("US17: I want to be able to trigger editing a contact's email")
+        class US17UIMTests {
+
+            @Test
+            @DisplayName("Test that takeNewEmail() returns the same string as inputted")
+            void takeNewEmailReturnsInputtedString() {
+                // Arrange
+                String input = "new@new.new\n";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                // Act
+                String actual = UserInputMenu.takeNewName();
+                // Assert
+                assertEquals("new@new.new", actual);
+            }
+        }
     }
 }

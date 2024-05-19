@@ -31,6 +31,9 @@ public class AddressBook {
             case 2:
                 userSearchByName();
                 break;
+            case 3:
+                userEditContact();
+                break;
             case 4:
                 userRemoveContact();
                 break;
@@ -55,6 +58,31 @@ public class AddressBook {
         System.out.println(displayContactsToUser(searchResults));
     }
 
+    private void userEditContact() {
+        String searchTerm = UserInputMenu.takeNameForSearch();
+        ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
+        System.out.println(displayContactsToUser(searchResults));
+        if (searchResults.isEmpty()) {
+            System.out.println("Returning To Main Menu");
+        } else {
+            int indexToEdit = UserInputMenu.takeUserNumberChoice(1, searchResults.size()) - 1;
+            Contact contactToEdit = this.getContactListManager().getContactList().get(indexToEdit);
+            UserInputMenu.printEditSelection();
+            int editSelection = UserInputMenu.takeUserNumberChoice(1, 3);
+            switch (editSelection) {
+                case 1:
+                    userEditName(contactToEdit);
+                    break;
+//                case 2:
+//                    userEditPhone(contactToEdit);
+//                    break;
+//                case 3:
+//                    userEditEmail(contactToEdit);
+//                    break;
+            }
+        }
+    }
+
     private void userRemoveContact() {
         String searchTerm = UserInputMenu.takeNameForSearch();
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
@@ -67,5 +95,11 @@ public class AddressBook {
             this.getContactListManager().removeContact(contactToRemove);
             System.out.println("Contact removed successfully");
         }
+    }
+
+    private void userEditName(Contact contact) {
+        String newName = UserInputMenu.takeNewName();
+        this.getContactListManager().editContactName(contact, newName);
+        System.out.println("Contact Name Changed Successfully");
     }
 }

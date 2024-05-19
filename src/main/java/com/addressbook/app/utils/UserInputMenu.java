@@ -22,6 +22,15 @@ public abstract class UserInputMenu {
         System.out.println(mainMenu);
     }
 
+    public static void printEditSelection() {
+        String editMenu = "";
+        editMenu += "\n1: Edit Name";
+        editMenu += "\n2: Edit Phone Number";
+        editMenu += "\n3: Edit Email Address";
+
+        System.out.println(editMenu);
+    }
+
     public static int takeUserNumberChoice(int minChoice, int maxChoice) {
         Scanner scanner = new Scanner(System.in);
         int userChoice = 0;
@@ -61,6 +70,12 @@ public abstract class UserInputMenu {
     public static String takeNewName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a new name: ");
+        return scanner.nextLine();
+    }
+
+    public static String takeNewEmail() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a new email: ");
         return scanner.nextLine();
     }
 }
