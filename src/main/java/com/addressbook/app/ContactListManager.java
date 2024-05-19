@@ -44,6 +44,7 @@ public class ContactListManager {
     }
 
     public void editContactPhone(Contact contact, String newPhone) {
+        checkContactInContactList(contact);
         if (checkPhoneNotTaken(newPhone)) {
             contact.setPhone(newPhone);
         } else {
@@ -61,6 +62,12 @@ public class ContactListManager {
             if (contact.getPhone().equals(phone)) return false;
         }
         return true;
+    }
+
+    private void checkContactInContactList(Contact contact) {
+        if (!this.contactList.contains(contact)) {
+            throw new IllegalArgumentException("Contact passed in must be in the contact list");
+        }
     }
 
 }
