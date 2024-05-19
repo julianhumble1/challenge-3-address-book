@@ -27,15 +27,6 @@ public abstract class DetailsValidator {
         return email.matches("\\S+@\\S+[.]\\S+");
     }
 
-    // Already Taken Checkers
-
-    public static boolean checkPhoneNotTaken(String phone, ArrayList<Contact> contactList) {
-        for (Contact contact: contactList) {
-            if (contact.getPhone().equals(phone)) return false;
-        }
-        return true;
-    }
-
     // String Property Checkers
 
     private static boolean checkStringNotEmpty(String string) {
