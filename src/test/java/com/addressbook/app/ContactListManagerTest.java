@@ -381,6 +381,7 @@ public class ContactListManagerTest {
                 // Arrange
                 Contact testContact1 = mock(Contact.class);
                 when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test@test.test");
                 testContactListManager.addContact(testContact1);
 
                 Contact testContact2 = mock(Contact.class);
