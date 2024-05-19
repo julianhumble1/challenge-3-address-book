@@ -78,10 +78,12 @@ public class ContactListManagerTest {
                 // Arrange
                 testContactListManager.addContact(testContact);
                 when(testContact.getPhone()).thenReturn("07987654321");
+                when(testContact.getEmail()).thenReturn("test@test.test");
                 int expected = testContactListManager.getContactList().size() + 1;
                 // Act
                 Contact testContact1 = mock(Contact.class);
                 when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
                 testContactListManager.addContact(testContact1);
                 // Assert
                 assertEquals(expected, testContactListManager.getContactList().size());
