@@ -125,8 +125,10 @@ public class ContactListManagerTest {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test Test");
                 when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
                 when(testContact2.getName()).thenReturn("Test2 Test2");
                 when(testContact2.getPhone()).thenReturn("07987654321");
+                when(testContact2.getEmail()).thenReturn("test2@test2.test2");
                 testContactListManager.addContact(testContact1);
                 testContactListManager.addContact(testContact2);
                 ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
