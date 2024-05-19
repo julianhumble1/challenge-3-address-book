@@ -27,7 +27,7 @@ public class ContactListManager {
 
     }
 
-    // NARROW DOWN CONTACT LIST
+    // SEARCH CONTACT LIST
 
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
