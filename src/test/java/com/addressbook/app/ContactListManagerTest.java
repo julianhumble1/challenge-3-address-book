@@ -35,6 +35,8 @@ public class ContactListManagerTest {
             @BeforeEach
             public void setUp() {
                 testContact = mock(Contact.class);
+                when(testContact.getPhone()).thenReturn("07987654321");
+                when(testContact.getEmail()).thenReturn("test@test.test");
             }
 
             @AfterEach
@@ -77,8 +79,7 @@ public class ContactListManagerTest {
             void canAddContactsWhenThereAreAlreadyContacts() {
                 // Arrange
                 testContactListManager.addContact(testContact);
-                when(testContact.getPhone()).thenReturn("07987654321");
-                when(testContact.getEmail()).thenReturn("test@test.test");
+
                 int expected = testContactListManager.getContactList().size() + 1;
                 // Act
                 Contact testContact1 = mock(Contact.class);
@@ -445,5 +446,28 @@ public class ContactListManagerTest {
             }
         }
 
+        @Nested
+        @DisplayName("US-11: I want to be unable to edit a contact to have the same email as another contact")
+        class US11ContactListManagerTests {
+
+            @Test
+            @DisplayName("Test IllegalArgumentException thrown if new email in editContactPhone matches already" +
+                    "existing contact's email")
+            void matchingEmailInEditContactEmailThrowsIllegalArgumentException() {
+                // Arrange
+                Contact testContact1 = mock(Contact.class);
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test@test.test");
+                testContactListManager.addContact(testContact1);
+
+                Contact testContact2 = mock(Contact.class);
+                when(testContact2.getPhone()).thenReturn("07987654321");
+                when(testContact2.getEmail()).thenReturn("test2@test2.test2");
+                testContactListManager.addContact(testContact2);
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.editContactEmail(testContact2, "test@test.test"));
+            }
+        }
     }
 }
