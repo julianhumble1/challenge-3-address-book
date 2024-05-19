@@ -61,18 +61,6 @@ public abstract class UserInputMenu {
         return contactDetails;
     }
 
-    public static String takeNewName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a new name: ");
-        return scanner.nextLine();
-    }
-
-    public static String takeNewEmail() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a new email: ");
-        return scanner.nextLine();
-    }
-
     public static String takeStringWithPrompt(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
