@@ -96,14 +96,16 @@ public class ContactListManagerTest {
         @DisplayName("US-5: I want to be able to search my contact list by name and see the results")
         class US5ContactListManagerTests {
 
-            private Contact testContact1 = mock(Contact.class);
-            private Contact testContact2 = mock(Contact.class);
+            private Contact testContact1;
+            private Contact testContact2;
 
             @BeforeEach
             void setUp() {
+                testContact1 = mock(Contact.class);
                 when(testContact1.getPhone()).thenReturn("07123456789");
                 when(testContact1.getEmail()).thenReturn("test1@test1.test1");
 
+                testContact2 = mock(Contact.class);
                 when(testContact2.getPhone()).thenReturn("07987654321");
                 when(testContact2.getEmail()).thenReturn("test2@test2.test2");
             }
@@ -179,6 +181,8 @@ public class ContactListManagerTest {
             @BeforeEach
             public void setUp() {
                 testContact = mock(Contact.class);
+                when(testContact.getPhone()).thenReturn("07987654321");
+                when(testContact.getEmail()).thenReturn("test@test.test");
             }
 
             @AfterEach
