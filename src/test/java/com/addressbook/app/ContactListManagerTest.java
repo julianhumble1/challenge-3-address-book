@@ -391,7 +391,18 @@ public class ContactListManagerTest {
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.checkEmailNotTaken("test@test.test"));
             }
+
+            @Test
+            @DisplayName("Test that when an email in checkEmailNotTaken doesn't match contact in contact list, doesn't" +
+                    "throw IllegalArgumentException")
+            void newEmailInCheckEmailNotTakenDoesNotThrowIllegalArgumentException() {
+                // Arrange
+                // Act
+                // Assert
+                assertDoesNotThrow(() -> testContactListManager.checkEmailNotTaken("test@test.com"));
+            }
         }
+
 
     }
 }

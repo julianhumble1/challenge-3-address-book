@@ -10,6 +10,8 @@ public class ContactListManager {
         return contactList;
     }
 
+    // ADD AND REMOVE CONTACTS
+
     public void addContact(Contact newContact) {
         if (newContact == null) {
             throw new IllegalArgumentException("Null value is not valid");
@@ -28,6 +30,8 @@ public class ContactListManager {
         }
     }
 
+    // NARROW DOWN CONTACT LIST
+
     public ArrayList<Contact> findSearchResults(String searchTerm) {
         ArrayList<Contact> searchResults = new ArrayList<>();
         for (Contact contact: contactList) {
@@ -37,6 +41,8 @@ public class ContactListManager {
         }
         return searchResults;
     }
+
+    // EDIT CONTACT DETAILS
 
     public void editContactName(Contact contact, String newName) {
         checkContactInContactList(contact);
@@ -57,6 +63,8 @@ public class ContactListManager {
         contact.setEmail(newEmail);
     }
 
+    // CHECK DETAILS NOT ALREADY IN EXISTING CONTACTS
+
     public boolean checkPhoneNotTaken(String phone) {
         for (Contact contact: this.contactList) {
             if (contact.getPhone().equals(phone)) return false;
@@ -71,6 +79,8 @@ public class ContactListManager {
             }
         }
     }
+
+    // CHECK CONTACT PASSED IN IS IN THE CONTACT LIST
 
     private void checkContactInContactList(Contact contact) {
         if (!this.contactList.contains(contact)) {
