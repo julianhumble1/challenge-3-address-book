@@ -61,7 +61,7 @@ public class AddressBookTest {
             @DisplayName("Test after performing actOnUserChoice with valid contact details, AB's CLM increases length by 1")
             void actOnUserChoiceValidContactDetailsIncreaseCLMLengthByOne() {
                 // Arrange
-                String input = "Test\n07123456789\ntest@test.test";
+                String input = "Test\n07123456789\ntest@test.test\n";
                 ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
                 System.setIn(in);
 
@@ -71,13 +71,14 @@ public class AddressBookTest {
                 int actual = testAddressBook.getContactListManager().getContactList().size();
                 // Assert
                 assertEquals(expected, actual);
+                System.setIn(System.in);
             }
 
             @Test
             @DisplayName("Test actOnUserChoice with invalid details, AB's CLM length stays the same")
             void actOnUserChoiceInvalidDetailsCLMLengthStaysSame() {
                 // Arrange
-                String input = "Test\n07123456789\ntestbademail";
+                String input = "Test\n07123456789\ntestbademail\n";
                 ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
                 System.setIn(in);
                 int expected = testAddressBook.getContactListManager().getContactList().size();
@@ -86,8 +87,8 @@ public class AddressBookTest {
                 int actual = testAddressBook.getContactListManager().getContactList().size();
                 // Assert
                 assertEquals(expected, actual);
+                System.setIn(System.in);
             }
-
         }
     }
 }

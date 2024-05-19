@@ -30,14 +30,17 @@ public class AddressBook {
     }
 
     private void userAddContact() {
-        String[] contactDetails = UserInputMenu.takeContactDetailsFromUser();
         try {
+            String[] contactDetails = UserInputMenu.takeContactDetailsFromUser();
             Contact newContact = new Contact(contactDetails[0], contactDetails[1], contactDetails[2]);
             this.getContactListManager().addContact(newContact);
-        } catch (IllegalArgumentException e) {
+            System.out.println("Contact added successfully.");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to add contact.");
         }
+
+
 
     }
 }
