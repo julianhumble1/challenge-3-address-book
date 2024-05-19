@@ -53,6 +53,15 @@ public class InputValidatorTest {
                 // Assert
                 assertDoesNotThrow(() -> InputValidator.validateIntInRange(1, 1, 5));
             }
+
+            @Test
+            @DisplayName("Test validateIntInRange doesn't throw exception if user choice is strictly between min and max choice")
+            void userChoiceBetweenMinAndMaxNoException() {
+                // Arrange
+                // Act
+                // Assert
+                assertDoesNotThrow(() -> InputValidator.validateIntInRange(3, 1, 5));
+            }
         }
     }
 }
