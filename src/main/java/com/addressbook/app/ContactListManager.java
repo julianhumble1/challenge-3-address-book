@@ -26,7 +26,6 @@ public class ContactListManager {
         } else {
             this.contactList.remove(contactToRemove);
         }
-
     }
 
     public ArrayList<Contact> findSearchResults(String searchTerm) {
@@ -51,7 +50,6 @@ public class ContactListManager {
         } else {
             throw new IllegalArgumentException("New phone number passed in matches another contact's phone number");
         }
-
     }
 
     public void editContactEmail(Contact contact, String newEmail) {
@@ -64,6 +62,14 @@ public class ContactListManager {
             if (contact.getPhone().equals(phone)) return false;
         }
         return true;
+    }
+
+    public void checkEmailNotTaken(String email) {
+        for (Contact contact: this.contactList) {
+            if(contact.getEmail().equals(email)) {
+                throw new IllegalArgumentException("This email is already taken by another contact in the contact list");
+            }
+        }
     }
 
     private void checkContactInContactList(Contact contact) {
