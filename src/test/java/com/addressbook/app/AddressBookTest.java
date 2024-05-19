@@ -30,8 +30,8 @@ public class AddressBookTest {
         class US5AddressBookTests {
 
             @Test
-            @DisplayName("Test that displayContactsToUser() returns the desired string")
-            void testDisplayContactsToUserReturnsDesiredString() {
+            @DisplayName("Test that displayContactsToUser() of a list of contacts returns the desired string")
+            void testDisplayContactsToUserWithListOfContactsReturnsDesiredString() {
                 // Arrange
                 Contact testContact1 = mock(Contact.class), testContact2 = mock(Contact.class);
                 when(testContact1.displayContact()).thenReturn("Name: Test1 Test1\nPhone: 07123456789\nEmail: test@test.test");
@@ -47,6 +47,18 @@ public class AddressBookTest {
 
                 // Act
                 String returnedString = testAddressBook.displayContactsToUser(testArrayList);
+                // Assert
+                assertEquals(expectedString, returnedString);
+            }
+
+            @Test
+            @DisplayName("Test that displayContactsToUser() of an empty list returns the desired string")
+            void testDisplayContactsToUserWithEmptyListsReturnsDesiredString() {
+                // Arrange
+                String expectedString = "No matching search results";
+                ArrayList<Contact> emptyArrayList = new ArrayList<>();
+                // Act
+                String returnedString = testAddressBook.displayContactsToUser(emptyArrayList);
                 // Assert
                 assertEquals(expectedString, returnedString);
             }
@@ -88,6 +100,26 @@ public class AddressBookTest {
                 // Assert
                 assertEquals(expected, actual);
                 System.setIn(System.in);
+            }
+        }
+
+        @Nested
+        @DisplayName("US-14: I want to be able to trigger searching by name")
+        class US14AddressBookTests {
+
+            @Test
+            @DisplayName("Test actOnUserChoice with a valid search calls displayContactsToUser")
+            void actOnUserChoiceCallsDisplayContactsToUser() {
+                // Arrange
+                String input = "Search Term\n";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+
+                AddressBook spyAddressBook = spy(testAddressBook);
+                // Act
+                spyAddressBook.actOnUserChoice(2);
+                // Assert
+                verify(spyAddressBook).displayContactsToUser(any());
             }
         }
     }

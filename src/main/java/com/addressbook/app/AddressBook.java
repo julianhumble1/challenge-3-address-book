@@ -13,6 +13,7 @@ public class AddressBook {
     }
 
     public static String displayContactsToUser(ArrayList<Contact> listOfContacts) {
+        if (listOfContacts.isEmpty()) return "No matching search results";
         String stringToReturn = "";
         for (int i = 0; i < listOfContacts.size(); i++) {
             stringToReturn += ("Contact " + (i+1) + ":\n\n");
@@ -39,8 +40,9 @@ public class AddressBook {
             System.out.println(e.getMessage());
             System.out.println("Failed to add contact.");
         }
+    }
 
-
+    private void userSearchByName() {
 
     }
 }
