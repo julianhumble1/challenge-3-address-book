@@ -17,19 +17,14 @@ public class ContactListManager {
     public void addContact(Contact newContact) {
         DetailsValidator.checkNotNull(newContact);
         checkEmailNotTaken(newContact.getEmail());
-        if (!checkPhoneNotTaken(newContact.getPhone())) {
-            throw new IllegalArgumentException("Phone number inputted already matches contact in contact list.");
-        } else {
-            this.contactList.add(newContact);
-        }
+        checkPhoneNotTaken(newContact.getPhone());
+        this.contactList.add(newContact);
     }
 
     public void removeContact(Contact contactToRemove) {
-        if (contactToRemove == null) {
-            throw new IllegalArgumentException("Null value is not valid");
-        } else {
-            this.contactList.remove(contactToRemove);
-        }
+        DetailsValidator.checkNotNull(contactToRemove);
+        this.contactList.remove(contactToRemove);
+
     }
 
     // NARROW DOWN CONTACT LIST
@@ -53,11 +48,8 @@ public class ContactListManager {
 
     public void editContactPhone(Contact contact, String newPhone) {
         checkContactInContactList(contact);
-        if (checkPhoneNotTaken(newPhone)) {
-            contact.setPhone(newPhone);
-        } else {
-            throw new IllegalArgumentException("New phone number passed in matches another contact's phone number");
-        }
+        checkPhoneNotTaken(newPhone);
+        contact.setPhone(newPhone);
     }
 
     public void editContactEmail(Contact contact, String newEmail) {
@@ -67,11 +59,12 @@ public class ContactListManager {
 
     // CHECK DETAILS NOT ALREADY IN EXISTING CONTACTS
 
-    public boolean checkPhoneNotTaken(String phone) {
+    public void checkPhoneNotTaken(String phone) {
         for (Contact contact: this.contactList) {
-            if (contact.getPhone().equals(phone)) return false;
+            if (contact.getPhone().equals(phone)) {
+                throw new IllegalArgumentException("This phone number is already taken by another contact in the contact list");
+            }
         }
-        return true;
     }
 
     public void checkEmailNotTaken(String email) {

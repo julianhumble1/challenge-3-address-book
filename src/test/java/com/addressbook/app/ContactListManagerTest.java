@@ -324,29 +324,32 @@ public class ContactListManagerTest {
 
             @Test
             @DisplayName("Test that when a phone number in checkPhoneNotTaken matches a contact already in the" +
-                    " contactList returns False")
+                    " contactList throws IllegalArgumentException")
             void phoneNumberAlreadyMatchingReturnsFalse() {
                 // Arrange
                 Contact existingContact = mock(Contact.class);
                 when(existingContact.getPhone()).thenReturn("07123456789");
+                when(existingContact.getEmail()).thenReturn("test@test.test");
                 testContactListManager.addContact(existingContact);
+
                 String newContactPhone = "07123456789";
                 // Act
                 // Assert
-                assertFalse(testContactListManager.checkPhoneNotTaken(newContactPhone));
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.checkPhoneNotTaken(newContactPhone));
             }
             @Test
             @DisplayName("Test that when a phone number which doesn't match a contact already in the contactList," +
-                    "returns true")
-            void phoneNumberNotAlreadyMatchingReturnsTrue() {
+                    "doesn't throw IllegalArgumentException")
+            void phoneNumberNotAlreadyMatchingDoesNotThrowException() {
                 // Arrange
                 Contact existingContact = mock(Contact.class);
                 when(existingContact.getPhone()).thenReturn("07123456789");
+                when(existingContact.getEmail()).thenReturn("test@test.test");
                 testContactListManager.addContact(existingContact);
                 String newContactPhone = "07123456781";
                 // Act
                 // Assert
-                assertTrue(testContactListManager.checkPhoneNotTaken(newContactPhone));
+                assertDoesNotThrow(() -> testContactListManager.checkPhoneNotTaken(newContactPhone));
             }
 
             @Test
@@ -441,7 +444,6 @@ public class ContactListManagerTest {
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(testContact2));
             }
         }
-
 
     }
 }
