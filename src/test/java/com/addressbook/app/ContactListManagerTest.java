@@ -356,11 +356,13 @@ public class ContactListManagerTest {
                 // Arrange
                 Contact existingContact = mock(Contact.class);
                 when(existingContact.getPhone()).thenReturn("07123456789");
+                when(existingContact.getEmail()).thenReturn("existing@existing.existing");
 
                 testContactListManager.addContact(existingContact);
 
                 Contact newContact = mock(Contact.class);
                 when(newContact.getPhone()).thenReturn("07123456789");
+                when(newContact.getEmail()).thenReturn("new@new.new");
                 // Act
 
                 // Assert
