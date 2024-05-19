@@ -73,6 +73,21 @@ public class AddressBookTest {
                 assertEquals(expected, actual);
             }
 
+            @Test
+            @DisplayName("Test actOnUserChoice with invalid details, AB's CLM length stays the same")
+            void actOnUserChoiceInvalidDetailsCLMLengthStaysSame() {
+                // Arrange
+                String input = "Test\n07123456789\ntestbademail";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                int expected = testAddressBook.getContactListManager().getContactList().size();
+                // Act
+                testAddressBook.actOnUserChoice(1);
+                int actual = testAddressBook.getContactListManager().getContactList().size();
+                // Assert
+                assertEquals(expected, actual);
+            }
+
         }
     }
 }
