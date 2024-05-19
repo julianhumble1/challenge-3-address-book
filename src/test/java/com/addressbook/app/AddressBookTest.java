@@ -55,7 +55,7 @@ public class AddressBookTest {
             @DisplayName("Test that displayContactsToUser() of an empty list returns the desired string")
             void testDisplayContactsToUserWithEmptyListsReturnsDesiredString() {
                 // Arrange
-                String expectedString = "No matching search results";
+                String expectedString = "No contacts available";
                 ArrayList<Contact> emptyArrayList = new ArrayList<>();
                 // Act
                 String returnedString = testAddressBook.displayContactsToUser(emptyArrayList);
@@ -168,6 +168,18 @@ public class AddressBookTest {
             @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new email, results in the contact having the expected email")
             void actOnUserInputLeadsToContactHavingCorrectNewEmail() {
+
+            }
+        }
+
+        @Nested
+        @DisplayName("US-17: I want to be able to trigger editing a contact's phone number")
+        class US18AddressBookTests {
+
+            @Test
+            @Disabled
+            @DisplayName("Test that actOnUserInput, with correct inputs and a valid new phone number, results in the contact having the expected phone number")
+            void actOnUserInputLeadsToContactHavingCorrectNewPhone() {
 
             }
         }

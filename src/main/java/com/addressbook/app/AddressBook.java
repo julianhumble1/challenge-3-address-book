@@ -13,7 +13,7 @@ public class AddressBook {
     }
 
     public String displayContactsToUser(ArrayList<Contact> listOfContacts) {
-        if (listOfContacts == null || listOfContacts.isEmpty()) return "No matching search results";
+        if (listOfContacts == null || listOfContacts.isEmpty()) return "No contacts available";
         String stringToReturn = "";
         for (int i = 0; i < listOfContacts.size(); i++) {
             stringToReturn += ("Contact " + (i+1) + ":\n\n");
@@ -37,6 +37,9 @@ public class AddressBook {
             case 4:
                 userRemoveContact();
                 break;
+            case 5:
+                System.out.println(this.displayContactsToUser(this.getContactListManager().getContactList()));
+                break;
         }
     }
 
@@ -59,28 +62,32 @@ public class AddressBook {
     }
 
     private void userEditContact() {
-        System.out.println("Please select a result to edit: ");
         String searchTerm = UserInputMenu.takeStringWithPrompt("Please enter a search term: ");
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
         if (searchResults.isEmpty()) {
             System.out.println("Returning To Main Menu");
         } else {
+            System.out.println("Please select a result to edit: ");
             int indexToEdit = UserInputMenu.takeUserNumberChoice(1, searchResults.size()) - 1;
             Contact contactToEdit = this.getContactListManager().getContactList().get(indexToEdit);
             UserInputMenu.printEditSelection();
             int editSelection = UserInputMenu.takeUserNumberChoice(1, 3);
-            switch (editSelection) {
-                case 1:
-                    userEditName(contactToEdit);
-                    break;
-//                case 2:
-//                    userEditPhone(contactToEdit);
-//                    break;
-                case 3:
-                    userEditEmail(contactToEdit);
-                    break;
-            }
+            editBasedOnSelection(editSelection, contactToEdit);
+        }
+    }
+
+    private void editBasedOnSelection(int editSelection, Contact contactToEdit) {
+        switch (editSelection) {
+            case 1:
+                userEditName(contactToEdit);
+                break;
+            case 2:
+                userEditPhone(contactToEdit);
+                break;
+            case 3:
+                userEditEmail(contactToEdit);
+                break;
         }
     }
 
@@ -100,13 +107,36 @@ public class AddressBook {
 
     private void userEditName(Contact contact) {
         String newName = UserInputMenu.takeStringWithPrompt("Please enter a new name: ");
-        this.getContactListManager().editContactName(contact, newName);
-        System.out.println("Contact Name Changed Successfully");
+        try{
+            this.getContactListManager().editContactName(contact, newName);
+            System.out.println("Contact Name Changed Successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    private void userEditPhone(Contact contact) {
+        String newPhone = UserInputMenu.takeStringWithPrompt("Please enter a new phone number: ");
+        try{
+            this.getContactListManager().editContactPhone(contact, newPhone);
+            System.out.println("Contact Phone Number Changed Successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     private void userEditEmail(Contact contact) {
         String newEmail = UserInputMenu.takeStringWithPrompt("Please enter a new email address: ");
-        this.getContactListManager().editContactEmail(contact, newEmail);
-        System.out.println("Contact Email Changed Successfully");
+        try{
+            this.getContactListManager().editContactEmail(contact, newEmail);
+            System.out.println("Contact Email Changed Successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

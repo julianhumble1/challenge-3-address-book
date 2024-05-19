@@ -171,6 +171,23 @@ public class ContactListManagerTest {
                 // Assert
                 assertEquals(expected, actual);
             }
+
+            @Test
+            @DisplayName("Test that the search is not case sensitive")
+            void testSearchIsNotCaseSensitive() {
+                // Arrange
+                when(testContact1.getName()).thenReturn("Test1");
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
+
+                testContactListManager.addContact(testContact1);
+                ArrayList<Contact> expected = new ArrayList<>(Arrays.asList(testContact1));
+                // Act
+
+                ArrayList<Contact> actual = testContactListManager.findSearchResults("test");
+                // Assert
+                assertEquals(expected, actual);
+            }
         }
 
         @Nested
