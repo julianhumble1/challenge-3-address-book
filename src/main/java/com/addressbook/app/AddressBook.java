@@ -1,9 +1,6 @@
 package com.addressbook.app;
 
-import com.addressbook.app.utils.DetailsValidator;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AddressBook {
 

@@ -1,10 +1,5 @@
 package com.addressbook.app.utils;
 
-import com.addressbook.app.Contact;
-
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-
 public abstract class DetailsValidator {
 
     // Purpose Validators

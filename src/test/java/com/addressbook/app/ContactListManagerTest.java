@@ -1,6 +1,5 @@
 package com.addressbook.app;
 
-import com.addressbook.app.utils.DetailsValidator;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
