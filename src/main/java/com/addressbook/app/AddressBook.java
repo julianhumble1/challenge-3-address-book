@@ -99,7 +99,7 @@ public class AddressBook {
     }
 
     private void userEditName(Contact contact) {
-        String newName = UserInputMenu.takeNewName();
+        String newName = UserInputMenu.takeStringWithPrompt("Please enter a new name: ");
         this.getContactListManager().editContactName(contact, newName);
         System.out.println("Contact Name Changed Successfully");
     }
