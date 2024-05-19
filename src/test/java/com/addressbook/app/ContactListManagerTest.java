@@ -401,6 +401,26 @@ public class ContactListManagerTest {
                 // Assert
                 assertDoesNotThrow(() -> testContactListManager.checkEmailNotTaken("test@test.com"));
             }
+
+            @Test
+            @DisplayName("Test that a contact in addContact with an email matchign another contact throws IllegalArgumentException")
+            void addContactWithDuplicateEmailThrowsIllegalArgumentException() {
+                // Arrange
+                Contact testContact1 = mock(Contact.class);
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test@test.test");
+
+                testContactListManager.addContact(testContact1);
+
+                Contact testContact2 = mock(Contact.class);
+                when(testContact2.getPhone()).thenReturn("07987654321");
+                when(testContact2.getEmail()).thenReturn("test@test.test");
+
+
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(testContact2));
+            }
         }
 
 

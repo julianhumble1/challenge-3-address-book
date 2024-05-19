@@ -13,6 +13,7 @@ public class ContactListManager {
     // ADD AND REMOVE CONTACTS
 
     public void addContact(Contact newContact) {
+        checkEmailNotTaken(newContact.getEmail());
         if (newContact == null) {
             throw new IllegalArgumentException("Null value is not valid");
         } else if (!checkPhoneNotTaken(newContact.getPhone())) {
