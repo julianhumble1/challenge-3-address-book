@@ -99,6 +99,15 @@ public class ContactListManagerTest {
             private Contact testContact1 = mock(Contact.class);
             private Contact testContact2 = mock(Contact.class);
 
+            @BeforeEach
+            void setUp() {
+                when(testContact1.getPhone()).thenReturn("07123456789");
+                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
+
+                when(testContact2.getPhone()).thenReturn("07987654321");
+                when(testContact2.getEmail()).thenReturn("test2@test2.test2");
+            }
+
             @AfterEach
             void tearDown() {
                 testContact1 = null;
@@ -125,12 +134,8 @@ public class ContactListManagerTest {
             void matchExactlyOneContactReturnsOnlyThatContact() {
                 // Arrange
                 when(testContact1.getName()).thenReturn("Test Test");
-                when(testContact1.getPhone()).thenReturn("07123456789");
-                when(testContact1.getEmail()).thenReturn("test1@test1.test1");
 
                 when(testContact2.getName()).thenReturn("Test2 Test2");
-                when(testContact2.getPhone()).thenReturn("07987654321");
-                when(testContact2.getEmail()).thenReturn("test2@test2.test2");
 
                 testContactListManager.addContact(testContact1);
                 testContactListManager.addContact(testContact2);
