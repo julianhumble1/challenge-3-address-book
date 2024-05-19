@@ -409,14 +409,20 @@ public class ContactListManagerTest {
         @DisplayName("US-10: I want to be unable to add a contact with the same email as another contact")
         class US10ContactListManagerTests {
 
+            Contact testContact;
+
+            @BeforeEach
+            void setUp() {
+                testContact = mock(Contact.class);
+                when(testContact.getEmail()).thenReturn("test@test.test");
+                when(testContact.getPhone()).thenReturn("07123456789");
+            }
+
             @Test
             @DisplayName("Test that when an email in checkEmailNotTaken matches contact in contactList,"
                         + "throws IllegalArgumentException")
             void testAlreadyTakenEmailThrowsIllegalArgumentException() {
                 // Arrange
-                Contact testContact = mock(Contact.class);
-                when(testContact.getEmail()).thenReturn("test@test.test");
-                when(testContact.getPhone()).thenReturn("07123456789");
                 testContactListManager.addContact(testContact);
                 // Act
                 // Assert
@@ -437,11 +443,7 @@ public class ContactListManagerTest {
             @DisplayName("Test that a contact in addContact with an email matchign another contact throws IllegalArgumentException")
             void addContactWithDuplicateEmailThrowsIllegalArgumentException() {
                 // Arrange
-                Contact testContact1 = mock(Contact.class);
-                when(testContact1.getPhone()).thenReturn("07123456789");
-                when(testContact1.getEmail()).thenReturn("test@test.test");
-
-                testContactListManager.addContact(testContact1);
+                testContactListManager.addContact(testContact);
 
                 Contact testContact2 = mock(Contact.class);
                 when(testContact2.getPhone()).thenReturn("07987654321");
