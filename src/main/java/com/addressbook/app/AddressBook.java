@@ -22,7 +22,14 @@ public class AddressBook {
         return stringToReturn;
     }
 
-    public void userAddContact() {
+    public void actOnUserChoice(int userChoice) {
+        switch (userChoice) {
+            case 1:
+                userAddContact();
+        }
+    }
+
+    private void userAddContact() {
         String[] contactDetails = UserInputMenu.takeContactDetailsFromUser();
         try {
             Contact newContact = new Contact(contactDetails[0], contactDetails[1], contactDetails[2]);
@@ -33,12 +40,4 @@ public class AddressBook {
         }
 
     }
-
-    public void actOnUserChoice(int userChoice) {
-        switch (userChoice) {
-            case 1:
-                userAddContact();
-        }
-    }
-
 }

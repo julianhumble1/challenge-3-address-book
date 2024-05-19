@@ -58,8 +58,8 @@ public class AddressBookTest {
         class US13AddressBookTests{
 
             @Test
-            @DisplayName("Test after performing userAddContact with valid contact details, AB's CLM contains expected contact")
-            void userAddContactWithValidContactDetailsResultsInNewContactInCLM() {
+            @DisplayName("Test after performing actOnUserChoice with valid contact details, AB's CLM contains expected contact")
+            void actOnUserChoiceValidContactDetailsResultsInNewContactInCLM() {
                // Arrange
                 String input = "Test\n07123456789\ntest@test.test";
                 ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -67,7 +67,7 @@ public class AddressBookTest {
 
                 Contact expected = new Contact("Test", "07123456789", "test@test.test");
                 // Act
-                testAddressBook.userAddContact();
+                testAddressBook.actOnUserChoice(1);
                 // Assert
                 testAddressBook.getContactListManager().getContactList().contains(expected);
             }
