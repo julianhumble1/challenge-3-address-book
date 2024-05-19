@@ -17,7 +17,7 @@ public class UserInputMenuTest {
 
         @Nested
         @DisplayName("US13: I want to be able to trigger adding a contact")
-        class US13UIMTests{
+        class US13UIMTests {
 
             @Test
             @DisplayName("takeUserNumberChoice returns the input when input is valid")
@@ -74,6 +74,24 @@ public class UserInputMenuTest {
                 // Assert
                 assertArrayEquals(expected, actual);
                 System.setIn(System.in);
+            }
+        }
+
+        @Nested
+        @DisplayName("US14: I want to be able to trigger searching by name")
+        class US14UIMTests {
+
+            @Test
+            @DisplayName("Test that takeNameForSearch returns passed in string")
+            void takeNameForSearchReturnsPassedInString() {
+                // Arrange
+                String input = "Search Term\n";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                // Act
+                String actual = UserInputMenu.takeNameForSearch();
+                // Assert
+                assertEquals("Search Term", actual);
             }
         }
     }

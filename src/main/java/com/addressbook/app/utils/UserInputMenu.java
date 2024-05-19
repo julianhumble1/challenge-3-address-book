@@ -51,5 +51,11 @@ public abstract class UserInputMenu {
         contactDetails[2] = scanner.nextLine();
         return contactDetails;
     }
+
+    public static String takeNameForSearch() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a search term: ");
+        return scanner.nextLine();
+    }
 }
 
