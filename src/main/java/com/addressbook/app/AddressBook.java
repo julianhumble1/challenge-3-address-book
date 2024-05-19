@@ -12,8 +12,8 @@ public class AddressBook {
         return contactListManager;
     }
 
-    public static String displayContactsToUser(ArrayList<Contact> listOfContacts) {
-        if (listOfContacts.isEmpty()) return "No matching search results";
+    public String displayContactsToUser(ArrayList<Contact> listOfContacts) {
+        if (listOfContacts == null || listOfContacts.isEmpty()) return "No matching search results";
         String stringToReturn = "";
         for (int i = 0; i < listOfContacts.size(); i++) {
             stringToReturn += ("Contact " + (i+1) + ":\n\n");
@@ -27,6 +27,10 @@ public class AddressBook {
         switch (userChoice) {
             case 1:
                 userAddContact();
+               break;
+            case 2:
+                userSearchByName();
+                break;
         }
     }
 
@@ -43,6 +47,8 @@ public class AddressBook {
     }
 
     private void userSearchByName() {
-
+        String searchTerm = UserInputMenu.takeNameForSearch();
+        ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
+        System.out.println(displayContactsToUser(searchResults));
     }
 }

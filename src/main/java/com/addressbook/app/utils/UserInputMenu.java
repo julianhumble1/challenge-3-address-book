@@ -14,9 +14,9 @@ public abstract class UserInputMenu {
         mainMenu += "\nAddress Book - Main Menu";
         mainMenu += "\n------------------";
         mainMenu += "\n\n1: Add Contact";
-        mainMenu += "\n2: Remove Contact";
+        mainMenu += "\n2: Search Contacts";
         mainMenu += "\n3: Edit Contact";
-        mainMenu += "\n4: Search Contacts";
+        mainMenu += "\n4: Remove Contact";
         mainMenu += "\n5: Display All Contacts";
 
         System.out.println(mainMenu);
