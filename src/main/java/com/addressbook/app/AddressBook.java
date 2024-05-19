@@ -59,6 +59,7 @@ public class AddressBook {
     }
 
     private void userEditContact() {
+        System.out.println("Please select a result to edit: ");
         String searchTerm = UserInputMenu.takeNameForSearch();
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
@@ -76,9 +77,9 @@ public class AddressBook {
 //                case 2:
 //                    userEditPhone(contactToEdit);
 //                    break;
-//                case 3:
-//                    userEditEmail(contactToEdit);
-//                    break;
+                case 3:
+                    userEditEmail(contactToEdit);
+                    break;
             }
         }
     }
@@ -101,5 +102,11 @@ public class AddressBook {
         String newName = UserInputMenu.takeNewName();
         this.getContactListManager().editContactName(contact, newName);
         System.out.println("Contact Name Changed Successfully");
+    }
+
+    private void userEditEmail(Contact contact) {
+        String newEmail = UserInputMenu.takeNewEmail();
+        this.getContactListManager().editContactEmail(contact, newEmail);
+        System.out.println("Contact Email Changed Successfully");
     }
 }

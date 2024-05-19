@@ -82,14 +82,14 @@ public class UserInputMenuTest {
         class US14UIMTests {
 
             @Test
-            @DisplayName("Test that takeNameForSearch returns passed in string")
-            void takeNameForSearchReturnsPassedInString() {
+            @DisplayName("Test that takeStringWithPrompt returns passed in string")
+            void takeStringWithPromptReturnsPassedInString() {
                 // Arrange
                 String input = "Search Term\n";
                 ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
                 System.setIn(in);
                 // Act
-                String actual = UserInputMenu.takeNameForSearch();
+                String actual = UserInputMenu.takeStringWithPrompt("Please enter a search term: ");
                 // Assert
                 assertEquals("Search Term", actual);
             }

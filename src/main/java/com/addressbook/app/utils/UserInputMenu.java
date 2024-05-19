@@ -78,5 +78,11 @@ public abstract class UserInputMenu {
         System.out.println("Please enter a new email: ");
         return scanner.nextLine();
     }
+
+    public static String takeStringWithPrompt(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        return scanner.nextLine();
+    }
 }
 

@@ -159,5 +159,17 @@ public class AddressBookTest {
 
             }
         }
+
+        @Nested
+        @DisplayName("US-17: I want to be able to trigger editing a contact's email")
+        class US17AddressBookTests {
+
+            @Test
+            @Disabled
+            @DisplayName("Test that actOnUserInput, with correct inputs and a valid new email, results in the contact having the expected email")
+            void actOnUserInputLeadsToContactHavingCorrectNewEmail() {
+
+            }
+        }
     }
 }
