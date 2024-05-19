@@ -105,7 +105,7 @@ public class AddressBook {
     }
 
     private void userEditEmail(Contact contact) {
-        String newEmail = UserInputMenu.takeNewEmail();
+        String newEmail = UserInputMenu.takeStringWithPrompt("Please enter a new email address: ");
         this.getContactListManager().editContactEmail(contact, newEmail);
         System.out.println("Contact Email Changed Successfully");
     }
