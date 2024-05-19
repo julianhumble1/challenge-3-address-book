@@ -57,5 +57,11 @@ public abstract class UserInputMenu {
         System.out.println("Please enter a search term: ");
         return scanner.nextLine();
     }
+
+    public static String takeNewName() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a new name: ");
+        return scanner.nextLine();
+    }
 }
 

@@ -94,5 +94,23 @@ public class UserInputMenuTest {
                 assertEquals("Search Term", actual);
             }
         }
+
+        @Nested
+        @DisplayName("US16: I want to be able to trigger editing a contact's name")
+        class US16UIMTests {
+
+            @Test
+            @DisplayName("Test that takeNewName() returns the same string as inputted")
+            void takeNewNameReturnsInputtedString() {
+                // Arrange
+                String input = "New Name\n";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                // Act
+                String actual = UserInputMenu.takeNewName();
+                // Assert
+                assertEquals("New Name", actual);
+            }
+        }
     }
 }

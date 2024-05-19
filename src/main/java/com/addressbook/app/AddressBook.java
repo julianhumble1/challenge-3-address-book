@@ -31,6 +31,9 @@ public class AddressBook {
             case 2:
                 userSearchByName();
                 break;
+            case 4:
+                userRemoveContact();
+                break;
         }
     }
 
@@ -50,5 +53,19 @@ public class AddressBook {
         String searchTerm = UserInputMenu.takeNameForSearch();
         ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
         System.out.println(displayContactsToUser(searchResults));
+    }
+
+    private void userRemoveContact() {
+        String searchTerm = UserInputMenu.takeNameForSearch();
+        ArrayList<Contact> searchResults = this.getContactListManager().findSearchResults(searchTerm);
+        System.out.println(displayContactsToUser(searchResults));
+        if (searchResults.isEmpty()) {
+            System.out.println("Returning To Main Menu");
+        } else {
+            int indexToRemove = UserInputMenu.takeUserNumberChoice(1, searchResults.size()) - 1;
+            Contact contactToRemove = searchResults.get(indexToRemove);
+            this.getContactListManager().removeContact(contactToRemove);
+            System.out.println("Contact removed successfully");
+        }
     }
 }

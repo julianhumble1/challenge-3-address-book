@@ -122,5 +122,30 @@ public class AddressBookTest {
                 verify(spyAddressBook).displayContactsToUser(any());
             }
         }
+
+        @Nested
+        @DisplayName("Us-15: I want to be able to trigger removing a contact")
+        class US15AddressBookTests {
+
+            @Test
+            @Disabled
+            @DisplayName("test that removing a contact using actOnUserChoice successfully reduces the contact list's length by one")
+            void actOnUserChoiceReducesContactListLengthByOne() {
+                // Arrange
+                Contact testContact = new Contact("Test", "07123456789", "test@test.test");
+                testAddressBook.getContactListManager().addContact(testContact);
+                int expected = testAddressBook.getContactListManager().getContactList().size() - 1;
+
+                String input = "Test\n1\n";
+                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
+                // Act
+                testAddressBook.actOnUserChoice(4);
+                int actual = testAddressBook.getContactListManager().getContactList().size();
+                // Assert
+                assertEquals(expected, actual);
+            }
+
+        }
     }
 }
