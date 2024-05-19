@@ -474,11 +474,25 @@ public class ContactListManagerTest {
                 Contact testContact2 = mock(Contact.class);
                 when(testContact2.getPhone()).thenReturn("07987654321");
                 when(testContact2.getEmail()).thenReturn("test@test.test");
-
-
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> testContactListManager.addContact(testContact2));
+            }
+
+            @Test
+            @DisplayName("Test that passing a contact in addContact with a phone matching another contact" +
+                    "doesn't increase contactlist length")
+            void failedAddContactDoesNotIncreaseContactListLength() {
+                // Arrange
+                testContactListManager.addContact(testContact);
+                int expected = testContactListManager.getContactList().size();
+
+                Contact newContact = mock(Contact.class);
+                when(newContact.getPhone()).thenReturn("07987654321");
+                when(newContact.getEmail()).thenReturn("test@test.test");
+                // Act
+                // Assert
+                assertEquals(expected, testContactListManager.getContactList().size());
             }
         }
 
