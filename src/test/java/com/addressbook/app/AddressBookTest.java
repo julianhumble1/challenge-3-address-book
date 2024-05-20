@@ -184,7 +184,6 @@ public class AddressBookTest {
         class US17AddressBookTests {
 
             @Test
-            @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new email, results in the contact having the expected email")
             void actOnUserInputLeadsToContactHavingCorrectNewEmail() {
                 try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
@@ -213,7 +212,21 @@ public class AddressBookTest {
             @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new phone number, results in the contact having the expected phone number")
             void actOnUserInputLeadsToContactHavingCorrectNewPhone() {
+                try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
+                    // Arrange
+                    Contact testContact = new Contact("Test", "07123456789", "test@test.test");
+                    testAddressBook.getContactListManager().addContact(testContact);
 
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a search term: ")).thenReturn("Test");
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 1)).thenReturn(1);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 3)).thenReturn(2);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a new phone number: ")).thenReturn("07987654321");
+                    // Act
+                    testAddressBook.actOnUserChoice(3);
+                    String actual = testAddressBook.getContactListManager().getContactList().get(0).getPhone();
+                    // Assert
+                    assertEquals("07987654321", actual);
+                }
             }
         }
     }
