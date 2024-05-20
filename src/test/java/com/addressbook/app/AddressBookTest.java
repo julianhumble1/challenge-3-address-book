@@ -1,10 +1,14 @@
 package com.addressbook.app;
 
+import com.addressbook.app.utils.UserInputMenu;
 import org.junit.jupiter.api.*;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -128,22 +132,26 @@ public class AddressBookTest {
         class US15AddressBookTests {
 
             @Test
-            @Disabled
             @DisplayName("test that removing a contact using userRemoveContact successfully reduces the contact list's length by one")
             void actOnUserChoiceReducesContactListLengthByOne() {
-                // Arrange
-                Contact testContact = new Contact("Test", "07123456789", "test@test.test");
-                testAddressBook.getContactListManager().addContact(testContact);
-                int expected = testAddressBook.getContactListManager().getContactList().size() - 1;
 
-                String input = "Test\n1\n";
-                ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-                // Act
-                testAddressBook.actOnUserChoice(4);
-                int actual = testAddressBook.getContactListManager().getContactList().size();
-                // Assert
-                assertEquals(expected, actual);
+                try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
+                    // Arrange
+                    Contact testContact = new Contact("Test", "07123456789", "test@test.test");
+                    testAddressBook.getContactListManager().addContact(testContact);
+
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt(anyString())).thenReturn("Test");
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(anyInt(), anyInt())).thenReturn(1);
+                    int expected = testAddressBook.getContactListManager().getContactList().size() - 1;
+
+                    // Act
+                    testAddressBook.actOnUserChoice(4);
+                    int actual = testAddressBook.getContactListManager().getContactList().size();
+                    // Assert
+                    assertEquals(expected, actual);
+                }
+
+
             }
 
         }
