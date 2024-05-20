@@ -150,10 +150,7 @@ public class AddressBookTest {
                     // Assert
                     assertEquals(expected, actual);
                 }
-
-
             }
-
         }
 
         @Nested
@@ -165,6 +162,22 @@ public class AddressBookTest {
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new name, results in the contact having the expected name")
             void actOnUserInputLeadsToContactHavingCorrectNewName() {
 
+                try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
+                    // Arrange
+                    Contact testContact = new Contact("Test", "07123456789", "test@test.test");
+                    testAddressBook.getContactListManager().addContact(testContact);
+
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a search term: ")).thenReturn("Test");
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 1)).thenReturn(1);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 3)).thenReturn(1);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a new name: ")).thenReturn("New Name");
+                    // Act
+                    testAddressBook.actOnUserChoice(3);
+                    String actual = testAddressBook.getContactListManager().getContactList().get(0).getName();
+                    // Assert
+                    assertEquals("New Name", actual);
+
+                }
             }
         }
 
@@ -181,7 +194,7 @@ public class AddressBookTest {
         }
 
         @Nested
-        @DisplayName("US-17: I want to be able to trigger editing a contact's phone number")
+        @DisplayName("US-18: I want to be able to trigger editing a contact's phone number")
         class US18AddressBookTests {
 
             @Test
