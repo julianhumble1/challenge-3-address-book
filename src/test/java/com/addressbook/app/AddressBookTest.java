@@ -132,7 +132,7 @@ public class AddressBookTest {
         class US15AddressBookTests {
 
             @Test
-            @DisplayName("test that removing a contact using userRemoveContact successfully reduces the contact list's length by one")
+            @DisplayName("test that removing a contact using actOnUserInput successfully reduces the contact list's length by one")
             void actOnUserChoiceReducesContactListLengthByOne() {
 
                 try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
@@ -209,7 +209,6 @@ public class AddressBookTest {
         class US18AddressBookTests {
 
             @Test
-            @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new phone number, results in the contact having the expected phone number")
             void actOnUserInputLeadsToContactHavingCorrectNewPhone() {
                 try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
