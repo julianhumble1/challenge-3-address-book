@@ -129,7 +129,7 @@ public class AddressBookTest {
 
             @Test
             @Disabled
-            @DisplayName("test that removing a contact using actOnUserChoice successfully reduces the contact list's length by one")
+            @DisplayName("test that removing a contact using userRemoveContact successfully reduces the contact list's length by one")
             void actOnUserChoiceReducesContactListLengthByOne() {
                 // Arrange
                 Contact testContact = new Contact("Test", "07123456789", "test@test.test");
