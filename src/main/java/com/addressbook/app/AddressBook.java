@@ -70,7 +70,7 @@ public class AddressBook {
         } else {
             System.out.println("Please select a result to edit: ");
             int indexToEdit = UserInputMenu.takeUserNumberChoice(1, searchResults.size()) - 1;
-            Contact contactToEdit = this.getContactListManager().getContactList().get(indexToEdit);
+            Contact contactToEdit = searchResults.get(indexToEdit);
             UserInputMenu.printEditSelection();
             int editSelection = UserInputMenu.takeUserNumberChoice(1, 3);
             editBasedOnSelection(editSelection, contactToEdit);
