@@ -158,7 +158,6 @@ public class AddressBookTest {
         class US16AddressBookTests {
 
             @Test
-            @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new name, results in the contact having the expected name")
             void actOnUserInputLeadsToContactHavingCorrectNewName() {
 
@@ -176,7 +175,6 @@ public class AddressBookTest {
                     String actual = testAddressBook.getContactListManager().getContactList().get(0).getName();
                     // Assert
                     assertEquals("New Name", actual);
-
                 }
             }
         }
@@ -189,7 +187,21 @@ public class AddressBookTest {
             @Disabled
             @DisplayName("Test that actOnUserInput, with correct inputs and a valid new email, results in the contact having the expected email")
             void actOnUserInputLeadsToContactHavingCorrectNewEmail() {
+                try(MockedStatic<UserInputMenu> userInputMenuMockedStatic = Mockito.mockStatic(UserInputMenu.class)) {
+                    // Arrange
+                    Contact testContact = new Contact("Test", "07123456789", "test@test.test");
+                    testAddressBook.getContactListManager().addContact(testContact);
 
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a search term: ")).thenReturn("Test");
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 1)).thenReturn(1);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeUserNumberChoice(1, 3)).thenReturn(3);
+                    userInputMenuMockedStatic.when(() -> UserInputMenu.takeStringWithPrompt("Please enter a new email address: ")).thenReturn("new@new.new");
+                    // Act
+                    testAddressBook.actOnUserChoice(3);
+                    String actual = testAddressBook.getContactListManager().getContactList().get(0).getEmail();
+                    // Assert
+                    assertEquals("new@new.new", actual);
+                }
             }
         }
 
